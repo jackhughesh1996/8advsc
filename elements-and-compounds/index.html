@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elements and Compounds — Unit Hub</title>
+    <meta
+      name="description"
+      content="7-lesson interactive chemistry unit on Elements and Compounds with Success Criteria, progress tracking, and an interactive Periodic Table."
+    />
+    <meta property="og:title" content="Elements and Compounds — Unit Hub" />
+    <meta
+      property="og:description"
+      content="7-lesson interactive chemistry unit on Elements and Compounds with Success Criteria, progress tracking, and an interactive Periodic Table."
+    />
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header-accent"></div>
+      <div class="topbar-inner">
+        <a class="brand-wordmark" href="./index.html">Elements &amp; Compounds</a>
+        <nav class="hub-nav-links" aria-label="Unit sections">
+          <a class="hub-nav-link" href="#unit-overview">Overview</a>
+          <a class="hub-nav-link" href="#lessons-section">Lessons</a>
+          <button type="button" class="hub-nav-link" data-open-periodic-table>
+            Periodic Table
+          </button>
+          <button type="button" class="hub-nav-link" data-export-summary>
+            Summary
+          </button>
+        </nav>
+        <a class="btn btn-primary btn-sm" href="./lesson-1.html">Start Lesson 1</a>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section id="unit-overview" class="hub-hero" aria-labelledby="hub-title">
+        <div class="hub-hero-copy">
+          <p class="eyebrow-text">Science Unit · Chemistry</p>
+          <h1 id="hub-title">Elements and Compounds</h1>
+          <div class="meta-line">
+            <span>Middle &amp; High School Chemistry</span>
+            <span aria-hidden="true">·</span>
+            <span>7 Interactive Lessons</span>
+            <span aria-hidden="true">·</span>
+            <span>Auto-saved in browser</span>
+          </div>
+          <p class="lead-text">
+            Build a solid foundation in matter and chemical change—from atoms and the Periodic Table
+            to writing formulas, naming compounds, and spotting chemical reactions.
+          </p>
+          <div class="hub-hero-actions">
+            <a class="btn btn-primary" href="./lesson-1.html">Begin Lesson 1</a>
+            <button type="button" class="btn btn-secondary" data-open-periodic-table>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="16" rx="2" />
+                <path d="M3 10h18M9 4v16M15 4v16" />
+              </svg>
+              Periodic Table
+            </button>
+          </div>
+        </div>
+
+        <aside class="hub-progress-panel" aria-label="Unit progress">
+          <div class="hub-progress-header">
+            <span class="hub-progress-title">Your Unit Progress</span>
+            <span class="hub-progress-pct" id="hub-progress-pct">0%</span>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="hub-progress-fill"></div>
+          </div>
+          <div class="hub-progress-stats">
+            <span id="hub-lessons-count">0 of 7 lessons complete</span>
+            <span class="tabular-nums" id="hub-activities-count">Progress auto-saves locally</span>
+          </div>
+          <div class="hub-utility-row">
+            <button type="button" class="btn btn-secondary btn-sm" data-export-summary>
+              Print / Export Summary
+            </button>
+            <button type="button" class="btn btn-danger-outline btn-sm" data-reset-progress>
+              Reset My Progress
+            </button>
+          </div>
+        </aside>
+      </section>
+
+      <section id="lessons-section" aria-labelledby="lessons-heading">
+        <div class="section-header-row">
+          <div>
+            <h2 id="lessons-heading">Unit Lessons &amp; Success Criteria</h2>
+            <p class="meta-line">Complete activities on each lesson page to track your mastery.</p>
+          </div>
+        </div>
+
+        <div id="unit-lesson-grid" class="lesson-grid"></div>
+        <noscript>
+          <p class="lead-text">
+            Please enable JavaScript to load interactive progress tracking and the Periodic Table.
+          </p>
+        </noscript>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Elements &amp; Compounds · 7-Lesson Classroom Unit</span>
+      <span>Your responses are stored locally on this device.</span>
+    </footer>
+
+    <script type="module" src="./assets/app.js"></script>
+  </body>
+</html>
