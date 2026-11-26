@@ -57,7 +57,7 @@
               <div class="slide-panel">
                 <span class="slide-panel-label">Lesson Overview</span>
                 <p class="lead-text">
-                  Trace every element back to the Big Bang, stellar cores, and supernovae, then use
+                  Explore how the Big Bang, stars and stellar events produced different elements, then use
                   nuclear binding energy to see why stars shine and heavy nuclei split.
                 </p>
                 <div class="slide-quick-facts">
@@ -80,8 +80,8 @@
               <div class="criteria-block">
                 <span class="criteria-heading">Success Criteria (click to reveal)</span>
                 <ul class="criteria-list">
-                  <li data-reveal-step data-reveal-label="Success Criterion 1: Hidden — click, press Space, or Down arrow to reveal"><span class="criteria-bullet" aria-hidden="true">·</span><span>Trace the cosmic origins of elements (Big Bang, stellar fusion, supernovae/neutron star mergers).</span></li>
-                  <li data-reveal-step data-reveal-label="Success Criterion 2: Hidden — click, press Space, or Down arrow to reveal"><span class="criteria-bullet" aria-hidden="true">·</span><span>Explain why lighter elements and even-atomic-number elements are much more abundant in the universe.</span></li>
+                  <li data-reveal-step data-reveal-label="Success Criterion 1: Hidden — click, press Space, or Down arrow to reveal"><span class="criteria-bullet" aria-hidden="true">·</span><span>Use proton counts to explain how nuclei form in the early universe and inside stars.</span></li>
+                  <li data-reveal-step data-reveal-label="Success Criterion 2: Hidden — click, press Space, or Down arrow to reveal"><span class="criteria-bullet" aria-hidden="true">·</span><span>Use the cosmic abundance chart to explain why hydrogen and helium dominate and why even atomic numbers often form peaks.</span></li>
                   <li data-reveal-step data-reveal-label="Success Criterion 3: Hidden — click, press Space, or Down arrow to reveal"><span class="criteria-bullet" aria-hidden="true">·</span><span>Use the nuclear binding energy curve to explain why both stellar fusion and nuclear fission release energy.</span></li>
                 </ul>
               </div>
@@ -104,11 +104,11 @@
             <div>
               <h2 class="activity-title slide-title-md" id="cosmic-timeline-heading">Where Do Elements Come From?</h2>
               <p class="activity-prompt">
-                Step through the three cosmic factories that built every atom in the Periodic Table—from the first minutes of the universe to exploding stars.
+                Use the proton-count rule from Lesson 2 to predict what each process makes.
               </p>
             </div>
             <span class="tabular-nums" data-cosmic-visited style="font-size: 0.8125rem; color: var(--text-muted);">
-              Explored: 1 / 3 cosmic stages
+              Completed: 0 / 3 stages
             </span>
           </div>
 
@@ -119,33 +119,41 @@
             </button>
             <button type="button" class="cosmic-tab-btn" data-cosmic-stage="stars" aria-pressed="false">
               <span class="cosmic-tab-step">Stage 02</span>
-              <span class="cosmic-tab-title">Stellar Fusion (Stars)</span>
+              <span class="cosmic-tab-title">Fusion in stars</span>
             </button>
             <button type="button" class="cosmic-tab-btn" data-cosmic-stage="supernova" aria-pressed="false">
               <span class="cosmic-tab-step">Stage 03</span>
-              <span class="cosmic-tab-title">Supernovae &amp; Mergers</span>
+              <span class="cosmic-tab-title">Neutron capture</span>
             </button>
           </div>
 
           <div class="sandbox-split">
-            <div class="sandbox-stage-panel">
-              <svg
-                id="cosmic-timeline-svg"
-                class="cosmic-svg"
-                viewBox="0 0 420 240"
-                aria-label="Visual illustration of cosmic element formation"
-              ></svg>
+            <div class="sandbox-stage-panel cosmic-stage-panel">
+              <svg id="cosmic-timeline-svg" class="cosmic-svg" viewBox="0 0 480 188" role="img"></svg>
+              <p class="cosmic-particle-key">
+                <span><span class="cosmic-key-dot cosmic-key-proton" aria-hidden="true">+</span> Proton</span>
+                <span><span class="cosmic-key-dot" aria-hidden="true"></span> Neutron</span>
+                <span>Atomic number = number of protons</span>
+              </p>
             </div>
 
-            <div class="sandbox-deck-panel">
-              <span class="slide-panel-label" data-cosmic-badge>First Few Minutes</span>
-              <h3 data-cosmic-title style="font-size: 1.2rem;">1. Big Bang Nucleosynthesis</h3>
-              <ul class="cosmic-bullet-list" data-cosmic-bullets></ul>
-              <div style="margin-top: auto;">
-                <span class="field-help" style="display: block; margin-bottom: 6px; font-weight: 600;">Key Elements Produced:</span>
-                <div class="cosmic-output-strip" data-cosmic-outputs></div>
+            <div class="sandbox-deck-panel cosmic-prediction">
+              <span class="slide-panel-label" data-cosmic-badge></span>
+              <h3 data-cosmic-title></h3>
+              <div class="cosmic-step-copy" aria-live="polite">
+                <p data-cosmic-explanation hidden></p>
+                <p data-cosmic-question hidden></p>
+              </div>
+              <div class="cosmic-controls">
+                <button type="button" class="btn btn-primary btn-sm" data-cosmic-reveal></button>
+                <button type="button" class="btn btn-secondary btn-sm" data-open-periodic-table>Periodic Table</button>
               </div>
             </div>
+          </div>
+
+          <div class="cosmic-handoff">
+            <strong>Predict before looking at Slide 03</strong>
+            <p>Which two elements will have the tallest bars? Which will be most abundant: nitrogen (7), oxygen (8) or fluorine (9)?</p>
           </div>
         </section>
 
@@ -164,37 +172,45 @@
             <div>
               <h2 class="activity-title slide-title-md" id="abundance-heading">Cosmic Abundance of Elements (Z = 1–30)</h2>
               <p class="activity-prompt">
-                Click any bar to inspect its abundance (log scale per 10⁶ Si atoms) and toggle Even vs. Odd Z to spot the sawtooth pattern.
+                The chart counts atoms per million silicon atoms on a log scale. Slide 02 showed the early universe’s composition by mass.
               </p>
             </div>
-            <button type="button" class="btn btn-secondary btn-sm" data-abundance-oddo aria-pressed="false">
-              Highlight Even vs. Odd Z (Oddo–Harkins)
-            </button>
+            <div class="cosmic-controls">
+              <button type="button" class="btn btn-primary btn-sm" data-abundance-reveal></button>
+              <button type="button" class="btn btn-secondary btn-sm" data-abundance-oddo aria-pressed="false" hidden>
+                Highlight Even vs. Odd Z (Oddo–Harkins)
+              </button>
+            </div>
           </div>
 
-          <div class="abundance-chart-frame">
-            <svg
-              id="abundance-svg"
-              class="abundance-svg"
-              viewBox="0 0 760 225"
-              aria-label="Logarithmic bar chart of cosmic element abundances from Hydrogen to Zinc"
-            ></svg>
-          </div>
+          <p class="cosmic-handoff" data-abundance-prompt aria-live="polite"></p>
 
-          <div class="abundance-inspector-row">
-            <div class="abundance-detail-box" data-abundance-inspector aria-live="polite"></div>
+          <div class="abundance-layout">
+            <div class="abundance-chart-frame" hidden>
+              <svg
+                id="abundance-svg"
+                class="abundance-svg"
+                viewBox="0 0 760 225"
+                role="group"
+                aria-label="Logarithmic chart of cosmic abundance in atoms per million silicon atoms"
+              ></svg>
+            </div>
 
-            <div class="abundance-check-box">
-              <strong style="font-size: 0.9rem; color: var(--text-heading);">Pattern Check: Which elements spike higher than their neighbors?</strong>
-              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button type="button" class="mini-quiz-opt" data-abundance-choice="even" aria-pressed="false">
-                  Even atomic numbers (C, O, Ne, Mg, Si, Fe)
-                </button>
-                <button type="button" class="mini-quiz-opt" data-abundance-choice="odd" aria-pressed="false">
-                  Odd atomic numbers (B, N, F, Na, Al)
-                </button>
+            <div class="abundance-inspector-row" hidden>
+              <div class="abundance-detail-box" data-abundance-inspector aria-live="polite"></div>
+
+              <div class="abundance-check-box" hidden>
+                <strong style="font-size: 0.9rem; color: var(--text-heading);">Which elements often form peaks above their neighbours?</strong>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button type="button" class="mini-quiz-opt" data-abundance-choice="even" aria-pressed="false">
+                    Even atomic numbers
+                  </button>
+                  <button type="button" class="mini-quiz-opt" data-abundance-choice="odd" aria-pressed="false">
+                    Odd atomic numbers
+                  </button>
+                </div>
+                <div class="activity-feedback" data-abundance-feedback aria-live="polite"></div>
               </div>
-              <div class="activity-feedback" data-abundance-feedback aria-live="polite"></div>
             </div>
           </div>
         </section>
@@ -215,9 +231,9 @@
                 <span class="slide-panel-label">Pattern 1 · Light vs. Heavy Elements</span>
                 <h3 style="font-size: 1.18rem;">Why Hydrogen &amp; Helium Dominate</h3>
                 <ul class="force-bullet-list">
-                  <li><strong>Step-by-step buildup:</strong> Stars must forge heavy nuclei gradually from H and He fuel.</li>
+                  <li><strong>A head start:</strong> The early universe already contained mostly hydrogen and helium. Stars later built heavier nuclei from lighter ones.</li>
                   <li><strong>Stronger repulsion:</strong> Nuclei with more protons (+) repel each other much more strongly, requiring extreme heat and pressure to fuse.</li>
-                  <li><strong>Rare cosmic blasts:</strong> Elements heavier than Iron only form briefly during violent supernovae and neutron star collisions.</li>
+                  <li><strong>Neutron capture:</strong> Some heavier nuclei form gradually in ageing stars. Others form rapidly in events such as neutron-star mergers.</li>
                 </ul>
               </div>
 
@@ -225,9 +241,9 @@
                 <span class="slide-panel-label">Pattern 2 · The Oddo–Harkins Rule</span>
                 <h3 style="font-size: 1.18rem;">Why Even Atomic Numbers Spike</h3>
                 <ul class="force-bullet-list">
-                  <li><strong>Helium-4 building blocks:</strong> Stellar fusion frequently adds ⁴He nuclei (2 protons + 2 neutrons), jumping by +2 protons at a time (C → O → Ne → Mg → Si).</li>
+                  <li><strong>Helium-4 building blocks:</strong> Some stellar fusion reactions add ⁴He nuclei (2 protons + 2 neutrons). For example, adding ⁴He to carbon (6 protons) makes oxygen (8 protons).</li>
                   <li><strong>Paired stability:</strong> Protons and neutrons gain extra nuclear stability when paired up in even numbers.</li>
-                  <li><strong>Result:</strong> Even-Z elements (C, O, Fe) are far more common than odd neighbors (B, N, Mn).</li>
+                  <li><strong>Result:</strong> Many even-Z elements, such as oxygen and iron, are more abundant than their odd-Z neighbours.</li>
                 </ul>
               </div>
             </div>
@@ -316,21 +332,21 @@
 
           <div class="multi-quiz-grid">
             <article class="mini-quiz-card" data-q-id="q1" data-answer="b">
-              <p class="mini-quiz-stem">1. Which elements were created in the first few minutes after the Big Bang?</p>
+              <p class="mini-quiz-stem">1. Which elements’ nuclei were present after the first few minutes of the universe?</p>
               <div class="mini-quiz-options">
                 <button type="button" class="mini-quiz-opt" data-option="a" data-explanation="Carbon and Oxygen required stellar fusion inside stars millions of years later.">Carbon, Oxygen &amp; Iron</button>
-                <button type="button" class="mini-quiz-opt" data-option="b" data-explanation="Big Bang nucleosynthesis produced ~75% Hydrogen, ~25% Helium, and traces of Lithium.">Hydrogen (~75%), Helium (~25%) &amp; trace Lithium</button>
-                <button type="button" class="mini-quiz-opt" data-option="c" data-explanation="Gold and Uranium require extreme supernovae or neutron star collisions.">Gold, Silver &amp; Uranium</button>
+                <button type="button" class="mini-quiz-opt" data-option="b" data-explanation="The mixture was about 75% hydrogen and 25% helium by mass, with traces of lithium.">Hydrogen and helium, with traces of lithium</button>
+                <button type="button" class="mini-quiz-opt" data-option="c" data-explanation="These heavy elements formed much later through processes including neutron capture.">Gold, Silver &amp; Uranium</button>
               </div>
               <p class="mini-quiz-note" data-q-note hidden></p>
             </article>
 
             <article class="mini-quiz-card" data-q-id="q2" data-answer="c">
-              <p class="mini-quiz-stem">2. Where are elements heavier than Iron (like Gold and Uranium) primarily made?</p>
+              <p class="mini-quiz-stem">2. Which process can build nuclei heavier than iron?</p>
               <div class="mini-quiz-options">
-                <button type="button" class="mini-quiz-opt" data-option="a" data-explanation="Normal fusion inside stars cannot release energy past Iron.">Inside calm main-sequence stars</button>
-                <button type="button" class="mini-quiz-opt" data-option="b" data-explanation="The early Big Bang cooled too quickly to build past Lithium.">During the Big Bang</button>
-                <button type="button" class="mini-quiz-opt" data-option="c" data-explanation="Supernovae and neutron star collisions supply the intense energy and neutrons needed past Iron.">In supernovae &amp; neutron star collisions</button>
+                <button type="button" class="mini-quiz-opt" data-option="a" data-explanation="Hydrogen fusion makes helium, a light element.">Hydrogen fusion in a star</button>
+                <button type="button" class="mini-quiz-opt" data-option="b" data-explanation="The early universe produced mostly hydrogen and helium nuclei.">Cooling of the early universe</button>
+                <button type="button" class="mini-quiz-opt" data-option="c" data-explanation="Nuclei can capture neutrons gradually in ageing stars or rapidly in events such as neutron-star mergers.">Neutron capture</button>
               </div>
               <p class="mini-quiz-note" data-q-note hidden></p>
             </article>
@@ -367,13 +383,13 @@
           <h2 class="slide-title-md" id="l3-key-ideas-heading">Key Ideas Summary</h2>
           <ul class="key-ideas-list">
             <li data-reveal-step data-reveal-label="Key Idea 1: Cosmic Origins — press → or ↓ to reveal">
-              <strong>Cosmic Origins:</strong> The Big Bang made H and He; stars fuse elements up to Iron (Z = 26); supernovae and neutron star mergers create elements heavier than Iron.
+              <strong>Cosmic Origins:</strong> The early universe produced mostly H and He. Fusion in stars makes elements such as C and O. Neutron capture can build nuclei heavier than iron.
             </li>
             <li data-reveal-step data-reveal-label="Key Idea 2: Light Element Dominance — press → or ↓ to reveal">
-              <strong>Why Light Elements Dominate:</strong> Heavy elements are built step-by-step and face stronger proton–proton electrostatic repulsion, requiring extreme heat and rare explosions.
+              <strong>Why Light Elements Dominate:</strong> Hydrogen and helium were already abundant before stars began making heavier nuclei.
             </li>
             <li data-reveal-step data-reveal-label="Key Idea 3: Oddo–Harkins Rule — press → or ↓ to reveal">
-              <strong>Oddo–Harkins Rule:</strong> Even-Z elements (C, O, Ne, Mg, Si, Fe) are far more abundant than odd neighbors because fusion adds Helium-4 blocks and paired nucleons are extra stable.
+              <strong>Oddo–Harkins Rule:</strong> Even-Z elements often form peaks. Adding helium-4 in some fusion reactions raises the atomic number by two, which helps explain the pattern.
             </li>
             <li data-reveal-step data-reveal-label="Key Idea 4: Binding Energy Peak — press → or ↓ to reveal">
               <strong>Binding Energy Curve:</strong> Reactions that climb UP toward the <strong>⁵⁶Fe peak</strong>—light fusion on the left and heavy fission on the right—release energy via <strong>E = mc²</strong>.
