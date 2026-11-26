@@ -129,7 +129,18 @@
 
           <div class="sandbox-split">
             <div class="sandbox-stage-panel cosmic-stage-panel">
-              <svg id="cosmic-timeline-svg" class="cosmic-svg" viewBox="0 0 480 188" role="img"></svg>
+              <div class="cosmic-visual">
+                <svg id="cosmic-timeline-svg" class="cosmic-svg" viewBox="0 0 480 188" role="img"></svg>
+                <canvas id="cosmic-scene" class="cosmic-scene" width="520" height="210" role="img" hidden></canvas>
+              </div>
+              <div class="cosmic-view-controls" data-cosmic-view-controls hidden>
+                <span>Schematic 3D model · drag to rotate</span>
+                <div role="group" aria-label="Rotate the 3D model">
+                  <button type="button" class="btn btn-secondary btn-sm" data-cosmic-rotate="-1" aria-label="Rotate model left">↶</button>
+                  <button type="button" class="btn btn-secondary btn-sm" data-cosmic-rotate="1" aria-label="Rotate model right">↷</button>
+                  <button type="button" class="btn btn-secondary btn-sm" data-cosmic-reset-view>Reset view</button>
+                </div>
+              </div>
               <p class="cosmic-particle-key">
                 <span><span class="cosmic-key-dot cosmic-key-proton" aria-hidden="true">+</span> Proton</span>
                 <span><span class="cosmic-key-dot" aria-hidden="true"></span> Neutron</span>
