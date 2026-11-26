@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 2: The Periodic Table &amp; Element Symbols — Elements and Compounds</title>
+    <title>Lesson 2: Inside the Atom &amp; Fundamental Forces — Elements and Compounds</title>
     <meta
       name="description"
-      content="Lesson 2 of Elements and Compounds: The Periodic Table &amp; Element Symbols."
+      content="Lesson 2 of Elements and Compounds: Protons, neutrons, sea of electrons, shell filling rules (2, 8, 8, 18, 18, 32, 32 and 2, 8, 8, 2), and how electrostatic and strong nuclear forces hold the atom together."
     />
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
-  <body data-lesson-id="lesson-2">
+  <body data-lesson-id="lesson-2" class="is-slideshow-mode">
     <header class="site-header">
       <div class="site-header-accent"></div>
       <div class="lesson-topbar-inner">
@@ -23,8 +23,8 @@
 
         <div class="topbar-center">
           <div class="topbar-lesson-row">
-            <span class="topbar-lesson-title">Lesson 2: The Periodic Table &amp; Element Symbols</span>
-            <span class="topbar-progress-label" data-progress-label>0 / 0 activities</span>
+            <span class="topbar-lesson-title">Lesson 2: Inside the Atom &amp; Fundamental Forces</span>
+            <span class="topbar-progress-label" data-progress-label>0 / 2 completed</span>
           </div>
           <div class="progress-track" aria-hidden="true">
             <div class="progress-fill" data-progress-fill></div>
@@ -45,51 +45,706 @@
       </div>
     </header>
 
-    <main class="lesson-layout">
-      <section class="lesson-header-card">
-        <p class="eyebrow-text">Lesson 02 of 07 · Elements and Compounds</p>
-        <h1>The Periodic Table &amp; Element Symbols</h1>
-        <p class="lead-text">
-          Read element tiles, write one- and two-letter chemical symbols accurately, and navigate
-          groups and periods.
-        </p>
-        <div class="criteria-block">
-          <span class="criteria-heading">Success Criteria</span>
-          <ul class="criteria-list">
-            <li><span class="criteria-bullet" aria-hidden="true">·</span><span>Use correct capitalisation when writing chemical symbols (e.g., Na, Cl, Fe).</span></li>
-            <li><span class="criteria-bullet" aria-hidden="true">·</span><span>Locate elements by period (row) and group (column) on the Periodic Table.</span></li>
-            <li><span class="criteria-bullet" aria-hidden="true">·</span><span>Explain why some symbols come from Latin names such as Fe, Cu, and Au.</span></li>
+    <main class="slideshow-workspace" id="slideshow-workspace">
+      <div class="slideshow-stage" id="slideshow-stage">
+        <!-- Slide 1: Title & Success Criteria -->
+        <section class="slide is-active" data-slide-title="Title &amp; Success Criteria">
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 01 · Lesson 02 of 07</span>
+          </div>
+          <div class="slide-centered-body">
+            <h1 class="slide-title-lg">Inside the Atom &amp; Fundamental Forces</h1>
+            <div class="slide-two-col">
+              <div class="slide-panel">
+                <span class="slide-panel-label">Lesson Overview</span>
+                <p class="lead-text">
+                  Zoom inside the atom to map protons, neutrons, and electron shells—then explore how
+                  the strong nuclear force and electrostatic force hold every atom together.
+                </p>
+                <div class="slide-quick-facts">
+                  <div class="slide-fact-box">
+                    <span class="slide-fact-value">2, 8, 8, 2</span>
+                    <span class="slide-fact-label">First 20 (from 2, 8, 8, 18, 18, 32, 32)</span>
+                  </div>
+                  <div class="slide-fact-box">
+                    <span class="slide-fact-value">2 Core Forces</span>
+                    <span class="slide-fact-label">Electrostatic &amp; strong nuclear</span>
+                  </div>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-secondary btn-sm" data-open-periodic-table>
+                    Open Periodic Table Reference
+                  </button>
+                </div>
+              </div>
+
+              <div class="criteria-block">
+                <span class="criteria-heading">Success Criteria (press → or ↓ to reveal)</span>
+                <ul class="criteria-list">
+                  <li data-reveal-step data-reveal-label="Success Criterion 1: Hidden — press → or ↓ to reveal">
+                    <span class="criteria-bullet" aria-hidden="true">·</span>
+                    <span>State the relative mass and charge of protons, neutrons, and electrons.</span>
+                  </li>
+                  <li data-reveal-step data-reveal-label="Success Criterion 2: Hidden — press → or ↓ to reveal">
+                    <span class="criteria-bullet" aria-hidden="true">·</span>
+                    <span>Use the 2, 8, 8, 18, 18, 32, 32 pattern (2, 8, 8, 2 for the first 20 elements) to arrange electrons in shells.</span>
+                  </li>
+                  <li data-reveal-step data-reveal-label="Success Criterion 3: Hidden — press → or ↓ to reveal">
+                    <span class="criteria-bullet" aria-hidden="true">·</span>
+                    <span>Explain how the strong nuclear force (with neutrons) and electrostatic force hold the atom together.</span>
+                  </li>
+                  <li data-reveal-step data-reveal-label="Success Criterion 4: Hidden — press → or ↓ to reveal">
+                    <span class="criteria-bullet" aria-hidden="true">·</span>
+                    <span>Calculate mass number, proton number, and net charge for atoms and ions.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 2: Label the Atom (Projector Step-by-Step Reveal) -->
+        <section class="slide" data-slide-title="Label the Atom (1–5)" aria-labelledby="atom-label-heading">
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 02 · Atom Anatomy</span>
+          </div>
+          <div class="slide-centered-body">
+            <h2 class="slide-title-md" id="atom-label-heading">Parts of an Atom (Lithium Example)</h2>
+            <p class="slide-concept-intro">
+              Label numbers 1–5 on your worksheet first, then reveal each part together as a class.
+            </p>
+
+            <div class="sandbox-split">
+              <div class="sandbox-stage-panel">
+                <svg class="atom-hotspot-svg" viewBox="0 0 360 270" aria-label="Bohr diagram of a Lithium atom with numbered labels 1 to 5">
+                  <!-- Electron Shells -->
+                  <circle cx="180" cy="135" r="108" fill="none" stroke="#94A3B8" stroke-width="2" stroke-dasharray="5 4" />
+                  <circle cx="180" cy="135" r="70" fill="none" stroke="#64748B" stroke-width="2.2" />
+
+                  <!-- Nucleus Halo -->
+                  <circle cx="180" cy="135" r="32" fill="#FEF2F2" stroke="#FECACA" stroke-width="1.5" stroke-dasharray="3 3" />
+
+                  <!-- Protons (red +) and Neutrons (slate) inside nucleus -->
+                  <circle cx="170" cy="127" r="9.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="1.5" />
+                  <text x="170" y="128" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-size="10" font-weight="700">+</text>
+
+                  <circle cx="190" cy="125" r="9.5" fill="#64748B" stroke="#FFFFFF" stroke-width="1.5" />
+                  <circle cx="172" cy="144" r="9.5" fill="#64748B" stroke="#FFFFFF" stroke-width="1.5" />
+
+                  <circle cx="191" cy="143" r="9.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="1.5" />
+                  <text x="191" y="144" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-size="10" font-weight="700">+</text>
+
+                  <circle cx="180" cy="134" r="9.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="1.5" />
+                  <text x="180" y="135" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-size="10" font-weight="700">+</text>
+
+                  <!-- Orbiting Electrons (blue -) -->
+                  <circle cx="110" cy="135" r="8" fill="#0284C7" stroke="#FFFFFF" stroke-width="1.8" />
+                  <text x="110" y="135" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-size="11" font-weight="700">−</text>
+
+                  <circle cx="250" cy="135" r="8" fill="#0284C7" stroke="#FFFFFF" stroke-width="1.8" />
+                  <text x="250" y="135" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-size="11" font-weight="700">−</text>
+
+                  <circle cx="180" cy="27" r="8" fill="#0284C7" stroke="#FFFFFF" stroke-width="1.8" />
+                  <text x="180" y="27" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-size="11" font-weight="700">−</text>
+
+                  <!-- Leader lines to Numbered Badges 1..5 -->
+                  <line x1="173" y1="27" x2="112" y2="27" stroke="#475569" stroke-width="1.6" />
+                  <line x1="198" y1="122" x2="296" y2="68" stroke="#475569" stroke-width="1.6" />
+                  <line x1="180" y1="167" x2="180" y2="225" stroke="#475569" stroke-width="1.6" />
+                  <line x1="162" y1="127" x2="66" y2="82" stroke="#475569" stroke-width="1.6" />
+                  <line x1="256" y1="210" x2="306" y2="226" stroke="#475569" stroke-width="1.6" />
+
+                  <!-- Static Numbered Pins -->
+                  <g class="atom-pin">
+                    <circle cx="96" cy="27" r="14" />
+                    <text x="96" y="27">1</text>
+                  </g>
+                  <g class="atom-pin">
+                    <circle cx="310" cy="62" r="14" />
+                    <text x="310" y="62">2</text>
+                  </g>
+                  <g class="atom-pin">
+                    <circle cx="180" cy="240" r="14" />
+                    <text x="180" y="240">3</text>
+                  </g>
+                  <g class="atom-pin">
+                    <circle cx="52" cy="76" r="14" />
+                    <text x="52" y="76">4</text>
+                  </g>
+                  <g class="atom-pin">
+                    <circle cx="320" cy="232" r="14" />
+                    <text x="320" y="232">5</text>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="sandbox-deck-panel">
+                <span class="slide-panel-label">Diagram Key (1–5)</span>
+
+                <div class="hotspot-row">
+                  <span class="hotspot-num-badge">1</span>
+                  <div data-reveal-step data-reveal-label="Reveal label 1">
+                    <span class="hotspot-revealed-text">Electron (e⁻)</span>
+                    <span class="hotspot-revealed-note">Negatively charged, orbits outside nucleus</span>
+                  </div>
+                </div>
+
+                <div class="hotspot-row">
+                  <span class="hotspot-num-badge">2</span>
+                  <div data-reveal-step data-reveal-label="Reveal label 2">
+                    <span class="hotspot-revealed-text">Neutron (n⁰)</span>
+                    <span class="hotspot-revealed-note">Neutral particle inside nucleus</span>
+                  </div>
+                </div>
+
+                <div class="hotspot-row">
+                  <span class="hotspot-num-badge">3</span>
+                  <div data-reveal-step data-reveal-label="Reveal label 3">
+                    <span class="hotspot-revealed-text">Nucleus</span>
+                    <span class="hotspot-revealed-note">Dense core of protons &amp; neutrons</span>
+                  </div>
+                </div>
+
+                <div class="hotspot-row">
+                  <span class="hotspot-num-badge">4</span>
+                  <div data-reveal-step data-reveal-label="Reveal label 4">
+                    <span class="hotspot-revealed-text">Proton (p⁺)</span>
+                    <span class="hotspot-revealed-note">Positively charged particle in nucleus</span>
+                  </div>
+                </div>
+
+                <div class="hotspot-row">
+                  <span class="hotspot-num-badge">5</span>
+                  <div data-reveal-step data-reveal-label="Reveal label 5">
+                    <span class="hotspot-revealed-text">Electron Shells</span>
+                    <span class="hotspot-revealed-note">Concentric energy levels around nucleus</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 3: Subatomic Particles Table (Projector Cell Reveals) -->
+        <section class="slide" data-slide-title="Subatomic Particles Table" aria-labelledby="subatomic-table-heading">
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 03 · Subatomic Properties</span>
+          </div>
+          <div class="slide-centered-body">
+            <h2 class="slide-title-md" id="subatomic-table-heading">Subatomic Particles: Mass, Charge &amp; Position</h2>
+            <p class="slide-concept-intro">
+              Record each property on your worksheet, then press → or ↓ to check each column row by row.
+            </p>
+
+            <div class="table-wrap">
+              <table class="student-table">
+                <thead>
+                  <tr>
+                    <th>Subatomic Particle</th>
+                    <th>Position in Atom</th>
+                    <th>Relative Mass (amu)</th>
+                    <th>Relative Charge</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Proton (p⁺)</strong></td>
+                    <td>
+                      <span class="revealed-cell-answer" data-reveal-step data-reveal-label="Reveal position">Nucleus</span>
+                    </td>
+                    <td>
+                      <span class="revealed-cell-answer tabular-nums" data-reveal-step data-reveal-label="Reveal mass">1 amu</span>
+                    </td>
+                    <td>
+                      <span class="revealed-cell-answer tabular-nums" data-reveal-step data-reveal-label="Reveal charge">+1</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Neutron (n⁰)</strong></td>
+                    <td>
+                      <span class="revealed-cell-answer" data-reveal-step data-reveal-label="Reveal position">Nucleus</span>
+                    </td>
+                    <td>
+                      <span class="revealed-cell-answer tabular-nums" data-reveal-step data-reveal-label="Reveal mass">1 amu</span>
+                    </td>
+                    <td>
+                      <span class="revealed-cell-answer tabular-nums" data-reveal-step data-reveal-label="Reveal charge">0 (neutral)</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Electron (e⁻)</strong></td>
+                    <td>
+                      <span class="revealed-cell-answer" data-reveal-step data-reveal-label="Reveal position">Electron shells</span>
+                    </td>
+                    <td>
+                      <span class="revealed-cell-answer tabular-nums" data-reveal-step data-reveal-label="Reveal mass">~1/1836 amu (≈ 0)</span>
+                    </td>
+                    <td>
+                      <span class="revealed-cell-answer tabular-nums" data-reveal-step data-reveal-label="Reveal charge">−1</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="definition-callout" data-reveal-step data-reveal-label="Key Rules: Atomic Number (Z), Mass Number (A) &amp; Net Charge — press → or ↓ to reveal">
+              <span class="definition-callout-label">Atomic Accounting Rules</span>
+              <p>
+                <strong>Atomic Number (Z)</strong> = number of protons (defines the element).
+                <strong>Mass Number (A)</strong> = protons + neutrons (electrons have negligible mass).
+                <strong>Net Charge</strong> = protons − electrons (neutral atoms have equal p⁺ and e⁻).
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 4: Interactive Teaching Simulator — Build the Atom & Sea of Electrons -->
+        <section
+          class="slide activity-card"
+          data-slide-title="Build the Atom &amp; Sea of Electrons"
+          data-activity="atom-sea-builder"
+          data-activity-id="l2-atom-sea"
+          aria-labelledby="atom-sea-heading"
+        >
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 04 · Live Teaching Simulator</span>
+          </div>
+          <div class="activity-header">
+            <div>
+              <h2 class="activity-title slide-title-md" id="atom-sea-heading">Build the Atom &amp; Release the Sea of Electrons</h2>
+              <p class="activity-prompt">
+                Add protons and neutrons to watch element identity, mass, charge, and nuclear stability change—then click Release Electrons to balance the charge.
+              </p>
+            </div>
+          </div>
+
+          <div class="sandbox-split">
+            <div class="sandbox-stage-panel">
+              <svg
+                id="atom-sea-svg"
+                class="sea-builder-svg"
+                viewBox="0 0 360 376"
+                aria-label="Live atom builder showing nucleus inside a sea of free electrons"
+              ></svg>
+              <div class="sea-banner" data-sea-banner aria-live="polite"></div>
+              <div class="sea-preset-row" aria-label="Quick classroom presets">
+                <span class="field-help" style="font-weight: 600;">Demo presets:</span>
+                <button type="button" class="sea-preset-chip" data-sea-preset="1:0">¹H (1p, 0n)</button>
+                <button type="button" class="sea-preset-chip" data-sea-preset="2:0">²He (2p, 0n)</button>
+                <button type="button" class="sea-preset-chip" data-sea-preset="2:2">⁴He (2p, 2n)</button>
+                <button type="button" class="sea-preset-chip" data-sea-preset="6:6">¹²C (6p, 6n)</button>
+                <button type="button" class="sea-preset-chip" data-sea-preset="6:8">¹⁴C (6p, 8n)</button>
+                <button type="button" class="sea-preset-chip" data-sea-preset="10:10">²⁰Ne (10p, 10n)</button>
+              </div>
+            </div>
+
+            <div class="sandbox-deck-panel">
+              <div class="sea-readout-grid">
+                <div class="sea-stat-box">
+                  <span class="sea-stat-label">Element (Z)</span>
+                  <span class="sea-stat-val" data-sea-readout="element">Hydrogen (H) · Z = 1</span>
+                </div>
+                <div class="sea-stat-box">
+                  <span class="sea-stat-label">Mass Number (A)</span>
+                  <span class="sea-stat-val" data-sea-readout="mass">1 amu</span>
+                </div>
+                <div class="sea-stat-box">
+                  <span class="sea-stat-label">Net Charge</span>
+                  <span class="sea-stat-val" data-sea-readout="charge">+1 (Nucleus only)</span>
+                </div>
+                <div class="sea-stat-box">
+                  <span class="sea-stat-label">Nucleus Stability</span>
+                  <span class="stability-badge is-stable" data-sea-readout="stability">✓ Stable Nucleus</span>
+                </div>
+              </div>
+
+              <p class="sea-stability-note" data-sea-stability-note aria-live="polite"></p>
+
+              <div class="shell-controls-list">
+                <div class="shell-control-row">
+                  <div>
+                    <strong>Protons (p⁺)</strong>
+                    <div class="field-help">Defines element &amp; + charge</div>
+                  </div>
+                  <div class="shell-step-btns">
+                    <button type="button" class="shell-step-btn" data-sea-delta="p:-1" aria-label="Remove proton">−</button>
+                    <span class="shell-count-readout" data-sea-count="p">1</span>
+                    <button type="button" class="shell-step-btn" data-sea-delta="p:1" aria-label="Add proton">+</button>
+                  </div>
+                </div>
+
+                <div class="shell-control-row">
+                  <div>
+                    <strong>Neutrons (n⁰)</strong>
+                    <div class="field-help">Adds mass &amp; nuclear stability</div>
+                  </div>
+                  <div class="shell-step-btns">
+                    <button type="button" class="shell-step-btn" data-sea-delta="n:-1" aria-label="Remove neutron">−</button>
+                    <span class="shell-count-readout" data-sea-count="n">0</span>
+                    <button type="button" class="shell-step-btn" data-sea-delta="n:1" aria-label="Add neutron">+</button>
+                  </div>
+                </div>
+
+                <div class="shell-control-row">
+                  <div>
+                    <strong>Captured Electrons (e⁻)</strong>
+                    <div class="field-help">Adjust after releasing to form ions</div>
+                  </div>
+                  <div class="shell-step-btns">
+                    <button type="button" class="shell-step-btn" data-sea-delta="e:-1" aria-label="Remove electron" disabled>−</button>
+                    <span class="shell-count-readout" data-sea-count="e">Sea</span>
+                    <button type="button" class="shell-step-btn" data-sea-delta="e:1" aria-label="Add electron" disabled>+</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="classify-actions" style="margin-top: auto;">
+                <button type="button" class="btn btn-primary btn-sm" data-sea-release>Release Electrons</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-sea-return hidden>Return to Sea</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-sea-reset>Reset</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 5: Electron Shell Filling Pattern (2, 8, 8, 18, 18, 32, 32) -->
+        <section class="slide" data-slide-title="Electron Shells: 2, 8, 8, 18, 18, 32, 32" aria-labelledby="shells-rule-heading">
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 05 · Electron Shells</span>
+          </div>
+          <div class="slide-centered-body">
+            <h2 class="slide-title-md" id="shells-rule-heading">Electron Shell Filling Pattern</h2>
+            <p class="slide-concept-intro">
+              Electrons fill from the inside out—matching the rows (Periods) of the Periodic Table.
+            </p>
+
+            <div class="shell-rule-grid">
+              <div class="slide-panel" data-reveal-step data-reveal-label="Rule 1: Filling Sequence (2, 8, 8, 18, 18, 32, 32) — press → or ↓ to reveal">
+                <span class="slide-panel-label">Filling Sequence Across the Table</span>
+                <div class="shell-seq-banner tabular-nums">2, 8, 8, 18, 18, 32, 32</div>
+                <div class="table-wrap">
+                  <table class="student-table">
+                    <thead>
+                      <tr>
+                        <th>Period (Row)</th>
+                        <th>Electrons Added</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td class="tabular-nums">Period 1</td><td class="tabular-nums"><strong>2</strong></td></tr>
+                      <tr><td class="tabular-nums">Period 2 &amp; Period 3</td><td class="tabular-nums"><strong>8</strong>, then <strong>8</strong></td></tr>
+                      <tr><td class="tabular-nums">Period 4 &amp; Period 5</td><td class="tabular-nums"><strong>18</strong>, then <strong>18</strong></td></tr>
+                      <tr><td class="tabular-nums">Period 6 &amp; Period 7</td><td class="tabular-nums"><strong>32</strong>, then <strong>32</strong></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="slide-panel" data-reveal-step data-reveal-label="Rule 2: First 20 Elements (2, 8, 8, 2) &amp; Bonus Note — press → or ↓ to reveal">
+                <span class="slide-panel-label">First 20 Elements: 2, 8, 8, 2</span>
+                <p style="font-size: 0.96rem;">
+                  For elements <strong>1–20 (Hydrogen to Calcium)</strong>, electrons simply fill in order:
+                </p>
+                <div class="shell-seq-banner tabular-nums">2, 8, 8, 2</div>
+                <p style="font-size: 0.9375rem;">
+                  Example: <strong>Potassium (19)</strong> = <span class="tabular-nums">2, 8, 8, 1</span> · <strong>Calcium (20)</strong> = <span class="tabular-nums">2, 8, 8, 2</span>
+                </p>
+                <div class="definition-callout" style="margin-top: auto;">
+                  <span class="definition-callout-label">Bonus Note</span>
+                  <p>From Period 4 onward, the shell being filled does <strong>not</strong> always match the period number—extra electrons drop back to finish inner shells.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 6: Interactive Electron Shell Builder -->
+        <section
+          class="slide activity-card"
+          data-slide-title="Interactive Electron Shell Builder"
+          data-activity="shell-builder"
+          data-activity-id="l2-shell-builder"
+          aria-labelledby="shell-builder-heading"
+        >
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 06 · Live Teaching Simulator</span>
+          </div>
+          <div class="activity-header">
+            <div>
+              <h2 class="activity-title slide-title-md" id="shell-builder-heading">Electron Shell Builder</h2>
+              <p class="activity-prompt">
+                Demonstrate Carbon, Neon, and Calcium together by clicking rings or + / − buttons (or use Reveal Answer to verify on screen).
+              </p>
+            </div>
+          </div>
+
+          <div class="sandbox-split">
+            <div class="sandbox-stage-panel">
+              <div class="sandbox-tab-row" role="group" aria-label="Choose element to build" style="width: 100%;">
+                <button type="button" class="sandbox-tab-btn is-active" data-shell-target="C">Carbon (C · 6 e⁻)</button>
+                <button type="button" class="sandbox-tab-btn" data-shell-target="Ne">Neon (Ne · 10 e⁻)</button>
+                <button type="button" class="sandbox-tab-btn" data-shell-target="Ca">Calcium (Ca · 20 e⁻)</button>
+              </div>
+              <svg id="shell-builder-svg" viewBox="0 0 300 300" width="270" height="270" aria-label="Interactive Bohr shell rings"></svg>
+              <p id="shell-live-readout" class="field-help" aria-live="polite" style="text-align: center;"></p>
+            </div>
+
+            <div class="sandbox-deck-panel">
+              <span class="slide-panel-label">Shell Controls (Click Ring or +/−)</span>
+              <div class="shell-controls-list">
+                <div class="shell-control-row">
+                  <div>
+                    <strong>Shell 1</strong>
+                    <div class="field-help">Max 2 electrons</div>
+                  </div>
+                  <div class="shell-step-btns">
+                    <button type="button" class="shell-step-btn" data-shell-delta="0:-1" aria-label="Remove electron from Shell 1">−</button>
+                    <span class="shell-count-readout" data-shell-count="0">0</span>
+                    <button type="button" class="shell-step-btn" data-shell-delta="0:1" aria-label="Add electron to Shell 1">+</button>
+                  </div>
+                </div>
+
+                <div class="shell-control-row">
+                  <div>
+                    <strong>Shell 2</strong>
+                    <div class="field-help">Max 8 electrons</div>
+                  </div>
+                  <div class="shell-step-btns">
+                    <button type="button" class="shell-step-btn" data-shell-delta="1:-1" aria-label="Remove electron from Shell 2">−</button>
+                    <span class="shell-count-readout" data-shell-count="1">0</span>
+                    <button type="button" class="shell-step-btn" data-shell-delta="1:1" aria-label="Add electron to Shell 2">+</button>
+                  </div>
+                </div>
+
+                <div class="shell-control-row">
+                  <div>
+                    <strong>Shell 3</strong>
+                    <div class="field-help">Max 8 (for elements 1–20)</div>
+                  </div>
+                  <div class="shell-step-btns">
+                    <button type="button" class="shell-step-btn" data-shell-delta="2:-1" aria-label="Remove electron from Shell 3">−</button>
+                    <span class="shell-count-readout" data-shell-count="2">0</span>
+                    <button type="button" class="shell-step-btn" data-shell-delta="2:1" aria-label="Add electron to Shell 3">+</button>
+                  </div>
+                </div>
+
+                <div class="shell-control-row">
+                  <div>
+                    <strong>Shell 4</strong>
+                    <div class="field-help">Next 2 (K &amp; Ca)</div>
+                  </div>
+                  <div class="shell-step-btns">
+                    <button type="button" class="shell-step-btn" data-shell-delta="3:-1" aria-label="Remove electron from Shell 4">−</button>
+                    <span class="shell-count-readout" data-shell-count="3">0</span>
+                    <button type="button" class="shell-step-btn" data-shell-delta="3:1" aria-label="Add electron to Shell 4">+</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="classify-actions" style="margin-top: auto;">
+                <button type="button" class="btn btn-primary btn-sm" data-shell-check>Check Configuration</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-shell-autofill>Reveal Answer</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-shell-clear>Clear Atom</button>
+              </div>
+            </div>
+          </div>
+          <div class="activity-feedback" aria-live="polite"></div>
+        </section>
+
+        <!-- Slide 7: What Holds the Atom Together? (Copy-Ready Notes & Large Visual) -->
+        <section class="slide" data-slide-title="What Holds the Atom Together?" aria-labelledby="forces-heading">
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 07 · Atomic Stability</span>
+          </div>
+          <div class="slide-centered-body" style="gap: 16px;">
+            <h2 class="slide-title-md" id="forces-heading">What Holds the Atom Together?</h2>
+            <div class="forces-layout">
+              <div class="forces-diagram-panel">
+                <svg
+                  class="forces-diagram-svg"
+                  viewBox="0 0 340 280"
+                  aria-label="Diagram showing electrostatic attraction holding electrons and strong nuclear force plus neutrons holding protons together"
+                >
+                  <!-- Outer electron shell -->
+                  <circle cx="170" cy="126" r="106" fill="none" stroke="#94A3B8" stroke-width="2" stroke-dasharray="5 5" />
+
+                  <!-- Electron at top -->
+                  <circle cx="170" cy="20" r="12" fill="#0284C7" stroke="#FFFFFF" stroke-width="2" />
+                  <text x="170" y="20" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-size="14" font-weight="700">−</text>
+
+                  <!-- Electrostatic attraction arrow (e- pulled to nucleus) -->
+                  <line x1="170" y1="36" x2="170" y2="72" stroke="#0284C7" stroke-width="3" />
+                  <polygon points="170,81 164,69 176,69" fill="#0284C7" />
+                  <text x="183" y="58" fill="#0369A1" font-size="12" font-weight="700">Attraction (+ ↔ −)</text>
+
+                  <!-- Nucleus strong-force zone -->
+                  <circle cx="170" cy="128" r="44" fill="#ECFDF5" stroke="#059669" stroke-width="2.8" />
+
+                  <!-- Two protons spaced by neutrons -->
+                  <circle cx="147" cy="128" r="11.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="1.6" />
+                  <text x="147" y="128" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-size="12.5" font-weight="700">+</text>
+
+                  <circle cx="170" cy="110" r="11.5" fill="#64748B" stroke="#FFFFFF" stroke-width="1.6" />
+                  <circle cx="170" cy="146" r="11.5" fill="#64748B" stroke="#FFFFFF" stroke-width="1.6" />
+
+                  <circle cx="193" cy="128" r="11.5" fill="#DC2626" stroke="#FFFFFF" stroke-width="1.6" />
+                  <text x="193" y="128" text-anchor="middle" dominant-baseline="central" fill="#FFFFFF" font-size="12.5" font-weight="700">+</text>
+
+                  <!-- Repulsion arrows inside diagram -->
+                  <line x1="132" y1="128" x2="112" y2="128" stroke="#DC2626" stroke-width="2.2" />
+                  <polygon points="105,128 114,124 114,132" fill="#DC2626" />
+                  <line x1="208" y1="128" x2="228" y2="128" stroke="#DC2626" stroke-width="2.2" />
+                  <polygon points="235,128 226,124 226,132" fill="#DC2626" />
+                  <text x="239" y="132" fill="#B91C1C" font-size="11" font-weight="700">Repel</text>
+
+                  <!-- Bottom Legend Labels -->
+                  <text x="170" y="210" text-anchor="middle" fill="#0369A1" font-size="12.5" font-weight="700">Electrostatic Attraction: Holds e⁻ in shells</text>
+                  <text x="170" y="232" text-anchor="middle" fill="#B91C1C" font-size="12" font-weight="600">Electrostatic Repulsion: + pushes + apart</text>
+                  <text x="170" y="254" text-anchor="middle" fill="#047857" font-size="12.5" font-weight="700">Strong Nuclear Force + Neutrons: Nuclear glue</text>
+                </svg>
+              </div>
+
+              <div class="forces-cards-stack">
+                <article class="force-card" data-reveal-step data-reveal-label="Force 1: Electrostatic Force — press → or ↓ to reveal">
+                  <div class="force-card-head">
+                    <h3 style="color: #0369A1;">1. Electrostatic Force</h3>
+                    <span class="force-range-note">Attraction &amp; Repulsion</span>
+                  </div>
+                  <ul class="force-bullet-list">
+                    <li><strong>Opposite charges attract:</strong> + protons pull − electrons into shells.</li>
+                    <li><strong>Like charges repel:</strong> + protons push each other apart.</li>
+                  </ul>
+                </article>
+
+                <article class="force-card" data-reveal-step data-reveal-label="Force 2: Strong Nuclear Force — press → or ↓ to reveal">
+                  <div class="force-card-head">
+                    <h3 style="color: var(--success);">2. Strong Nuclear Force</h3>
+                    <span class="force-range-note">Nuclear Glue</span>
+                  </div>
+                  <ul class="force-bullet-list">
+                    <li><strong>Short-range glue</strong> holding protons &amp; neutrons together.</li>
+                    <li><strong>Neutrons</strong> act as buffers to help overcome proton repulsion.</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 8: Worked Problem Set (Q1–Q5, Projector Step-by-Step Reveal) -->
+        <section class="slide" data-slide-title="Worked Problem Set (Q1–Q5)" aria-labelledby="prob-calc-heading">
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 08 · Worksheet Solutions (Q1–Q5)</span>
+          </div>
+          <div class="slide-centered-body">
+            <h2 class="slide-title-md" id="prob-calc-heading">Worked Problem Set</h2>
+            <p class="slide-concept-intro">
+              Review each worksheet question on screen—press → or ↓ to reveal each worked answer step by step.
+            </p>
+
+            <div class="worked-q-layout">
+              <div class="worked-q-col">
+                <div class="worked-q-card">
+                  <p class="worked-q-stem">Q1. A Neon atom has 9 neutrons and 10 electrons.</p>
+                  <div class="worked-subitem">
+                    <span class="worked-subitem-q">(a) How many protons does it have?</span>
+                    <span class="worked-answer-pill" data-reveal-step data-reveal-label="Reveal Q1(a)">10 protons (Z = 10)</span>
+                  </div>
+                  <div class="worked-subitem">
+                    <span class="worked-subitem-q">(b) What is its mass number?</span>
+                    <span class="worked-answer-pill" data-reveal-step data-reveal-label="Reveal Q1(b)">19 (10 p⁺ + 9 n⁰ · isotope ¹⁹Ne)</span>
+                  </div>
+                  <div class="worked-subitem">
+                    <span class="worked-subitem-q">(c) What is its overall charge?</span>
+                    <span class="worked-answer-pill" data-reveal-step data-reveal-label="Reveal Q1(c)">0 (10 p⁺ − 10 e⁻)</span>
+                  </div>
+                </div>
+
+                <div class="worked-q-card">
+                  <p class="worked-q-stem">Q2. Predicting net charge when electrons change:</p>
+                  <div class="worked-subitem">
+                    <span class="worked-subitem-q">(a) Neutral Neon gains 1 electron. Net charge?</span>
+                    <span class="worked-answer-pill" data-reveal-step data-reveal-label="Reveal Q2(a)">−1 (10 p⁺ − 11 e⁻)</span>
+                  </div>
+                  <div class="worked-subitem">
+                    <span class="worked-subitem-q">(b) Neutral Sodium (11 p⁺) loses 1 electron. Net charge?</span>
+                    <span class="worked-answer-pill" data-reveal-step data-reveal-label="Reveal Q2(b)">+1 (11 p⁺ − 10 e⁻)</span>
+                  </div>
+                </div>
+
+                <div class="worked-q-card">
+                  <p class="worked-q-stem">Q3. An unknown atom has 17 protons and 18 neutrons.</p>
+                  <div class="worked-subitem">
+                    <span class="worked-subitem-q">(a) Identify the element:</span>
+                    <span class="worked-answer-pill" data-reveal-step data-reveal-label="Reveal Q3(a)">Chlorine (Cl)</span>
+                  </div>
+                  <div class="worked-subitem">
+                    <span class="worked-subitem-q">(b) What is its mass number?</span>
+                    <span class="worked-answer-pill" data-reveal-step data-reveal-label="Reveal Q3(b)">35 (17 + 18)</span>
+                  </div>
+                  <div class="worked-subitem">
+                    <span class="worked-subitem-q">(c) Electron shell arrangement:</span>
+                    <span class="worked-answer-pill" data-reveal-step data-reveal-label="Reveal Q3(c)">2, 8, 7</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="worked-q-col">
+                <div class="worked-q-card" style="flex: 1;">
+                  <p class="worked-q-stem">Q4. Explain what keeps electrons bound inside an atom.</p>
+                  <div class="worked-answer-box" data-reveal-step data-reveal-label="Reveal Q4 model explanation">
+                    Opposite charges attract via the <strong>electrostatic force</strong>: positively charged protons in the nucleus pull inward on negatively charged electrons, holding them in shells around the nucleus.
+                  </div>
+                </div>
+
+                <div class="worked-q-card" style="flex: 1;">
+                  <p class="worked-q-stem">Q5. Explain what holds the nucleus together despite proton–proton repulsion, including the role of neutrons.</p>
+                  <div class="worked-answer-box" data-reveal-step data-reveal-label="Reveal Q5 model explanation">
+                    Protons repel each other electrostatically, but the short-range <strong>strong nuclear force</strong> acts as glue holding the nucleus together. <strong>Neutrons</strong> act as buffers to help overcome proton repulsion.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 9: Key Ideas Summary & Wrap-Up -->
+        <section class="slide key-ideas-card" data-slide-title="Key Ideas Summary" aria-labelledby="l2-key-ideas-heading">
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 09 · Summary</span>
+          </div>
+          <h2 class="slide-title-md" id="l2-key-ideas-heading">Key Ideas Summary</h2>
+          <ul class="key-ideas-list">
+            <li data-reveal-step data-reveal-label="Key Idea 1: Subatomic Particles — press → or ↓ to reveal">
+              <strong>Subatomic Particles:</strong> Protons (+1, 1 amu) and neutrons (0, 1 amu) form the dense nucleus; tiny electrons (−1, ~1/1836 amu) occupy shells.
+            </li>
+            <li data-reveal-step data-reveal-label="Key Idea 2: Shell Pattern — press → or ↓ to reveal">
+              <strong>Shell Pattern:</strong> Electrons follow the <strong>2, 8, 8, 18, 18, 32, 32</strong> pattern across Periods 1–7—starting with <strong>2, 8, 8, 2</strong> for elements 1–20.
+            </li>
+            <li data-reveal-step data-reveal-label="Key Idea 3: Holding the Atom Together — press → or ↓ to reveal">
+              <strong>Forces in the Atom:</strong> Electrostatic attraction (+ ↔ −) holds electrons in shells; strong nuclear glue and neutron buffers overcome proton repulsion in the nucleus.
+            </li>
+            <li data-reveal-step data-reveal-label="Key Idea 4: Atomic Accounting — press → or ↓ to reveal">
+              <strong>Atomic Accounting:</strong> Atomic Number (Z) = protons; Mass Number (A) = protons + neutrons; Net Charge = protons − electrons.
+            </li>
           </ul>
-        </div>
-      </section>
 
-      <!-- LESSON CONTENT & INTERACTIVES GO HERE -->
-      <section class="lesson-section-card" aria-label="Lesson content placeholder">
-        <h2>Lesson Activities</h2>
-        <div class="skeleton-slot">
-          <span class="skeleton-slot-title">Lesson 2 Content Placeholder</span>
-          <p>
-            This lesson page is wired to the shared progress bar, Periodic Table modal, local
-            auto-save, and export tools. Full explanations and interactive activities will be added
-            here next.
-          </p>
-        </div>
-      </section>
-
-      <nav class="lesson-footer-nav" aria-label="Lesson tools and pagination">
-        <div class="lesson-footer-tools">
-          <button type="button" class="btn btn-secondary btn-sm" data-export-summary>
-            Print / Export Summary
-          </button>
-          <button type="button" class="btn btn-danger-outline btn-sm" data-reset-progress>
-            Reset My Progress
-          </button>
-        </div>
-        <div class="lesson-footer-pager">
-          <a class="btn btn-secondary btn-sm" href="./lesson-1.html">Prev: Lesson 1</a>
-          <a class="btn btn-primary btn-sm" href="./lesson-3.html">Next: Lesson 3</a>
-        </div>
-      </nav>
+          <nav class="lesson-footer-nav" aria-label="Lesson tools and pagination" style="margin-top: auto;">
+            <div class="lesson-footer-tools">
+              <button type="button" class="btn btn-secondary btn-sm" data-export-summary>
+                Print / Export Summary
+              </button>
+              <button type="button" class="btn btn-danger-outline btn-sm" data-reset-progress>
+                Reset My Progress
+              </button>
+            </div>
+            <div class="lesson-footer-pager">
+              <a class="btn btn-secondary btn-sm" href="./lesson-1.html">Prev: Lesson 1</a>
+              <a class="btn btn-primary btn-sm" href="./lesson-3.html">Next: Lesson 3</a>
+            </div>
+          </nav>
+        </section>
+      </div>
     </main>
 
     <script type="module" src="./assets/app.js"></script>

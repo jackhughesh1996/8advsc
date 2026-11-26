@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lesson 1: Atoms &amp; Elements — Elements and Compounds</title>
+    <title>Lesson 1: What is an Element? — Elements and Compounds</title>
     <meta
       name="description"
-      content="Lesson 1 of Elements and Compounds: Atoms &amp; Elements."
+      content="Lesson 1 of Elements and Compounds: Define elements, explore the first 20 elements, and distinguish single atoms, molecules, and lattices."
     />
     <link rel="stylesheet" href="./assets/styles.css" />
   </head>
-  <body data-lesson-id="lesson-1">
+  <body data-lesson-id="lesson-1" class="is-slideshow-mode">
     <header class="site-header">
       <div class="site-header-accent"></div>
       <div class="lesson-topbar-inner">
@@ -23,8 +23,8 @@
 
         <div class="topbar-center">
           <div class="topbar-lesson-row">
-            <span class="topbar-lesson-title">Lesson 1: Atoms &amp; Elements</span>
-            <span class="topbar-progress-label" data-progress-label>0 / 0 activities</span>
+            <span class="topbar-lesson-title">Lesson 1: What is an Element?</span>
+            <span class="topbar-progress-label" data-progress-label>0 / 4 completed</span>
           </div>
           <div class="progress-track" aria-hidden="true">
             <div class="progress-fill" data-progress-fill></div>
@@ -49,51 +49,617 @@
       </div>
     </header>
 
-    <main class="lesson-layout">
-      <section class="lesson-header-card">
-        <p class="eyebrow-text">Lesson 01 of 07 · Elements and Compounds</p>
-        <h1>Atoms &amp; Elements</h1>
-        <p class="lead-text">
-          Explore what matter is made of at the particle level and how pure elements differ from
-          everyday substances.
-        </p>
-        <div class="criteria-block">
-          <span class="criteria-heading">Success Criteria</span>
-          <ul class="criteria-list">
-            <li><span class="criteria-bullet" aria-hidden="true">·</span><span>Define an atom as the smallest building block of an element.</span></li>
-            <li><span class="criteria-bullet" aria-hidden="true">·</span><span>Explain that an element contains only one type of atom.</span></li>
-            <li><span class="criteria-bullet" aria-hidden="true">·</span><span>Identify common elements from particle diagrams and everyday examples.</span></li>
+    <main class="slideshow-workspace" id="slideshow-workspace">
+      <div class="slideshow-stage" id="slideshow-stage">
+        <!-- Slide 1: Title & Success Criteria -->
+        <section class="slide is-active" data-slide-title="Title &amp; Success Criteria">
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 01 · Lesson 01 of 07</span>
+          </div>
+          <div class="slide-centered-body">
+            <h1 class="slide-title-lg">What is an Element?</h1>
+            <div class="slide-two-col">
+              <div class="slide-panel">
+                <span class="slide-panel-label">Lesson Overview</span>
+                <p class="lead-text">
+                  Discover what all matter is built from, explore the first 20 elements on the Periodic
+                  Table, and preview how atoms arrange into single atoms, molecules, or lattices.
+                </p>
+                <div class="slide-quick-facts">
+                  <div class="slide-fact-box">
+                    <span class="slide-fact-value">Elements 1–20</span>
+                    <span class="slide-fact-label">Hydrogen (H) to Calcium (Ca)</span>
+                  </div>
+                  <div class="slide-fact-box">
+                    <span class="slide-fact-value">3 Arrangements</span>
+                    <span class="slide-fact-label">Single atoms, molecules &amp; lattices</span>
+                  </div>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-secondary btn-sm" data-open-periodic-table>
+                    Open Periodic Table Reference
+                  </button>
+                </div>
+              </div>
+
+              <div class="criteria-block">
+                <span class="criteria-heading">Success Criteria (click to reveal)</span>
+                <ul class="criteria-list">
+                  <li data-reveal-step data-reveal-label="Success Criterion 1: Hidden — click, press Space, or Down arrow to reveal">
+                    <span class="criteria-bullet" aria-hidden="true">·</span>
+                    <span>Define an element.</span>
+                  </li>
+                  <li data-reveal-step data-reveal-label="Success Criterion 2: Hidden — click, press Space, or Down arrow to reveal">
+                    <span class="criteria-bullet" aria-hidden="true">·</span>
+                    <span>Distinguish between single atoms, molecules, and lattices (descriptive preview).</span>
+                  </li>
+                  <li data-reveal-step data-reveal-label="Success Criterion 3: Hidden — click, press Space, or Down arrow to reveal">
+                    <span class="criteria-bullet" aria-hidden="true">·</span>
+                    <span>Identify the names and symbols of the first 20 elements.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 2: What is an element? -->
+        <section class="slide" data-slide-title="What is an Element?" aria-labelledby="what-is-element-heading">
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 02 · Core Concept</span>
+          </div>
+          <div class="slide-centered-body">
+            <h2 class="slide-title-md" id="what-is-element-heading">What is an element?</h2>
+            <div class="definition-callout" data-reveal-step data-reveal-label="Core Definition: What is an element? — click or press Space to reveal">
+              <span class="definition-callout-label">Core Definition</span>
+              <p>
+                An element is a pure substance made of one kind of atom. Elements are the building
+                blocks for everything in the world.
+              </p>
+            </div>
+            <div data-reveal-step data-reveal-label="Real-World Examples: 5 pure elements in everyday life — click or press Space to reveal" style="display: flex; flex-direction: column; gap: 14px;">
+              <p class="slide-concept-intro">
+                Think of elements like different types of building bricks. You can find pure elements
+                all around you—glowing inside street signs, powering phones, and lighting matches.
+              </p>
+              <div class="gallery-grid" aria-label="Real-world examples of elements">
+                <article class="gallery-card">
+                  <div class="gallery-svg-box">
+                    <svg viewBox="0 0 120 72" width="110" height="68" aria-hidden="true">
+                      <rect x="12" y="14" width="96" height="44" rx="10" fill="#1E293B" />
+                      <rect x="18" y="20" width="84" height="32" rx="6" fill="none" stroke="#F25C5E" stroke-width="3" />
+                      <text x="60" y="42" text-anchor="middle" fill="#FCA5A5" font-family="sans-serif" font-weight="700" font-size="16">OPEN</text>
+                    </svg>
+                  </div>
+                  <div class="gallery-card-head">
+                    <span class="gallery-card-title">Neon Signs</span>
+                    <span class="gallery-symbol">Ne</span>
+                  </div>
+                  <p class="gallery-card-text">
+                    Glass tubes filled with pure neon gas glow bright red-orange when electricity passes through.
+                  </p>
+                </article>
+
+                <article class="gallery-card">
+                  <div class="gallery-svg-box">
+                    <svg viewBox="0 0 120 72" width="110" height="68" aria-hidden="true">
+                      <rect x="18" y="34" width="66" height="8" rx="2" fill="#D97706" opacity="0.45" />
+                      <ellipse cx="88" cy="38" rx="12" ry="8" fill="#C93336" />
+                      <path d="M90 12 C98 22, 97 30, 88 32 C81 30, 82 21, 90 12 Z" fill="#F59E0B" />
+                    </svg>
+                  </div>
+                  <div class="gallery-card-head">
+                    <span class="gallery-card-title">Match Heads</span>
+                    <span class="gallery-symbol">P</span>
+                  </div>
+                  <p class="gallery-card-text">
+                    Red phosphorus on a matchbox strip ignites easily with friction to start a flame.
+                  </p>
+                </article>
+
+                <article class="gallery-card">
+                  <div class="gallery-svg-box">
+                    <svg viewBox="0 0 120 72" width="110" height="68" aria-hidden="true">
+                      <rect x="14" y="40" width="52" height="7" rx="2" fill="#94A3B8" transform="rotate(-14 40 43)" />
+                      <circle cx="78" cy="31" r="18" fill="#FEF3C7" />
+                      <circle cx="78" cy="31" r="10" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2" />
+                      <path d="M78 7 L78 14 M78 48 L78 55 M54 31 L61 31 M95 31 L102 31 M62 15 L67 20 M89 42 L94 47 M94 15 L89 20 M67 42 L62 47" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round" />
+                    </svg>
+                  </div>
+                  <div class="gallery-card-head">
+                    <span class="gallery-card-title">Burning Magnesium</span>
+                    <span class="gallery-symbol">Mg</span>
+                  </div>
+                  <p class="gallery-card-text">
+                    Magnesium ribbon burns with a dazzling white light used in flares and sparklers.
+                  </p>
+                </article>
+
+                <article class="gallery-card">
+                  <div class="gallery-svg-box">
+                    <svg viewBox="0 0 120 72" width="110" height="68" aria-hidden="true">
+                      <ellipse cx="48" cy="28" rx="16" ry="20" fill="#F25C5E" />
+                      <ellipse cx="72" cy="24" rx="15" ry="18" fill="#38BDF8" />
+                      <path d="M48 48 Q45 58 50 66 M72 42 Q70 55 64 66" fill="none" stroke="#64748B" stroke-width="1.8" />
+                    </svg>
+                  </div>
+                  <div class="gallery-card-head">
+                    <span class="gallery-card-title">Helium Balloons</span>
+                    <span class="gallery-symbol">He</span>
+                  </div>
+                  <p class="gallery-card-text">
+                    Helium is lighter than surrounding air, lifting party and weather balloons upward.
+                  </p>
+                </article>
+
+                <article class="gallery-card">
+                  <div class="gallery-svg-box">
+                    <svg viewBox="0 0 120 72" width="110" height="68" aria-hidden="true">
+                      <rect x="26" y="18" width="64" height="36" rx="5" fill="#E2E8F0" stroke="#475569" stroke-width="2" />
+                      <rect x="90" y="28" width="6" height="16" rx="2" fill="#475569" />
+                      <rect x="32" y="24" width="38" height="24" rx="3" fill="#059669" />
+                      <path d="M54 27 L47 36 L53 36 L50 45 L59 34 L53 34 Z" fill="#FFFFFF" />
+                    </svg>
+                  </div>
+                  <div class="gallery-card-head">
+                    <span class="gallery-card-title">Lithium-Ion Battery</span>
+                    <span class="gallery-symbol">Li</span>
+                  </div>
+                  <p class="gallery-card-text">
+                    Lithium ions shuttle charge back and forth inside rechargeable phone and laptop batteries.
+                  </p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 3: Interactive First 20 Elements Explorer -->
+        <section
+          class="slide activity-card"
+          data-slide-title="First 20 Elements Explorer"
+          data-activity="first20"
+          data-activity-id="l1-first20"
+          aria-labelledby="f20-heading"
+        >
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 03 · Interactive Explorer</span>
+          </div>
+          <div class="activity-header">
+            <div>
+              <h2 class="activity-title slide-title-md" id="f20-heading">First 20 Elements Explorer</h2>
+              <p class="activity-prompt">
+                Click any tile from Hydrogen (1) to Calcium (20) to inspect its atomic mass and fun
+                fact, or switch to Quiz Mode to test your memory.
+              </p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <span class="tabular-nums" id="f20-score-badge" style="font-size: 0.8125rem; color: var(--text-muted);">
+                Explored: 1 / 20
+              </span>
+              <button type="button" class="btn btn-secondary btn-sm" id="f20-quiz-toggle" aria-pressed="false">
+                Toggle Quiz Mode
+              </button>
+            </div>
+          </div>
+
+          <div class="f20-grid-scroll">
+            <div class="f20-grid" id="f20-grid"></div>
+          </div>
+
+          <div class="f20-detail-panel" id="f20-detail-panel" aria-live="polite"></div>
+        </section>
+
+        <!-- Slide 4: Single Atoms, Molecules & Lattices Concept -->
+        <section class="slide" data-slide-title="Single Atoms, Molecules &amp; Lattices" aria-labelledby="arrangements-heading">
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 04 · Particle Arrangements</span>
+          </div>
+          <div class="slide-centered-body">
+            <h2 class="slide-title-md" id="arrangements-heading">How Elements Arrange Their Atoms</h2>
+            <p class="slide-concept-intro">
+              Even though every element is made of just one kind of atom, those atoms can join up in
+              three very different ways:
+            </p>
+
+            <div class="arrangement-grid">
+              <article class="arrangement-card" data-reveal-step data-reveal-label="Arrangement 1: Single Atoms — click or press Space to reveal">
+                <div class="particle-svg-frame">
+                  <svg viewBox="0 0 180 100" width="160" height="90" aria-hidden="true">
+                    <circle cx="38" cy="30" r="11" fill="#A78BFA" stroke="#4C1D95" stroke-width="2" />
+                    <circle cx="122" cy="26" r="11" fill="#A78BFA" stroke="#4C1D95" stroke-width="2" />
+                    <circle cx="80" cy="64" r="11" fill="#A78BFA" stroke="#4C1D95" stroke-width="2" />
+                    <circle cx="144" cy="72" r="11" fill="#A78BFA" stroke="#4C1D95" stroke-width="2" />
+                  </svg>
+                </div>
+                <h3>Single Atoms</h3>
+                <p class="gallery-card-text">
+                  Individual atoms that do not bond to each other—they drift freely apart (e.g., Neon
+                  and Helium gas).
+                </p>
+              </article>
+
+              <article class="arrangement-card" data-reveal-step data-reveal-label="Arrangement 2: Molecules — click or press Space to reveal">
+                <div class="particle-svg-frame">
+                  <svg viewBox="0 0 180 100" width="160" height="90" aria-hidden="true">
+                    <circle cx="40" cy="34" r="10" fill="#38BDF8" stroke="#0369A1" stroke-width="2" />
+                    <circle cx="58" cy="34" r="10" fill="#38BDF8" stroke="#0369A1" stroke-width="2" />
+                    <circle cx="114" cy="28" r="10" fill="#38BDF8" stroke="#0369A1" stroke-width="2" />
+                    <circle cx="130" cy="37" r="10" fill="#38BDF8" stroke="#0369A1" stroke-width="2" />
+                    <circle cx="72" cy="70" r="10" fill="#38BDF8" stroke="#0369A1" stroke-width="2" />
+                    <circle cx="90" cy="70" r="10" fill="#38BDF8" stroke="#0369A1" stroke-width="2" />
+                  </svg>
+                </div>
+                <h3>Molecules</h3>
+                <p class="gallery-card-text">
+                  Small groups of two or more atoms bonded tightly together, separated from other
+                  molecules (e.g., Hydrogen H<sub>2</sub>, Chlorine Cl<sub>2</sub>).
+                </p>
+              </article>
+
+              <article class="arrangement-card" data-reveal-step data-reveal-label="Arrangement 3: Lattices — click or press Space to reveal">
+                <div class="particle-svg-frame">
+                  <svg viewBox="0 0 180 100" width="160" height="90" aria-hidden="true">
+                    <g fill="#FBBF24" stroke="#92400E" stroke-width="1.8">
+                      <circle cx="54" cy="24" r="9.5" /><circle cx="73" cy="24" r="9.5" /><circle cx="92" cy="24" r="9.5" /><circle cx="111" cy="24" r="9.5" /><circle cx="130" cy="24" r="9.5" />
+                      <circle cx="54" cy="43" r="9.5" /><circle cx="73" cy="43" r="9.5" /><circle cx="92" cy="43" r="9.5" /><circle cx="111" cy="43" r="9.5" /><circle cx="130" cy="43" r="9.5" />
+                      <circle cx="54" cy="62" r="9.5" /><circle cx="73" cy="62" r="9.5" /><circle cx="92" cy="62" r="9.5" /><circle cx="111" cy="62" r="9.5" /><circle cx="130" cy="62" r="9.5" />
+                      <circle cx="54" cy="81" r="9.5" /><circle cx="73" cy="81" r="9.5" /><circle cx="92" cy="81" r="9.5" /><circle cx="111" cy="81" r="9.5" /><circle cx="130" cy="81" r="9.5" />
+                    </g>
+                  </svg>
+                </div>
+                <h3>Lattices</h3>
+                <p class="gallery-card-text">
+                  All atoms bonded continuously with neighbouring atoms in a huge regular grid (e.g.,
+                  Gold, Sodium, Iron, Copper).
+                </p>
+              </article>
+            </div>
+            <p class="field-help" style="text-align: center;">
+              <strong>Looking ahead:</strong> In Lesson 5, you will learn <em>why</em> atomic
+              structure and electronegativity cause some elements to form molecules while others form lattices.
+            </p>
+          </div>
+        </section>
+
+        <!-- Slide 5: 6-Card Particle Arrangement Challenge -->
+        <section
+          class="slide activity-card"
+          data-slide-title="6-Element Particle Challenge"
+          data-activity="particle-match"
+          data-activity-id="l1-arrangements"
+          aria-labelledby="particle-challenge-heading"
+        >
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 05 · Interactive Classification</span>
+          </div>
+          <div class="activity-header">
+            <div>
+              <h2 class="activity-title slide-title-md" id="particle-challenge-heading">
+                6-Element Particle Arrangement Challenge
+              </h2>
+              <p class="activity-prompt">
+                Look closely at each element’s particle diagram and classify it as Single Atoms,
+                Molecules, or a Lattice.
+              </p>
+            </div>
+          </div>
+
+          <div class="challenge-grid">
+            <div class="challenge-card" data-particle-card="hydrogen" data-label="Hydrogen" data-answer="molecules">
+              <div class="challenge-card-head">
+                <strong>Hydrogen</strong>
+                <span class="gallery-symbol">H<sub>2</sub></span>
+              </div>
+              <div class="particle-svg-frame">
+                <svg viewBox="0 0 140 84" width="130" height="78" aria-label="Pairs of bonded hydrogen atoms">
+                  <circle cx="32" cy="26" r="8" fill="#60A5FA" stroke="#1D4ED8" stroke-width="1.8" />
+                  <circle cx="47" cy="26" r="8" fill="#60A5FA" stroke="#1D4ED8" stroke-width="1.8" />
+                  <circle cx="92" cy="28" r="8" fill="#60A5FA" stroke="#1D4ED8" stroke-width="1.8" />
+                  <circle cx="105" cy="36" r="8" fill="#60A5FA" stroke="#1D4ED8" stroke-width="1.8" />
+                  <circle cx="56" cy="58" r="8" fill="#60A5FA" stroke="#1D4ED8" stroke-width="1.8" />
+                  <circle cx="71" cy="58" r="8" fill="#60A5FA" stroke="#1D4ED8" stroke-width="1.8" />
+                </svg>
+              </div>
+              <div class="segmented-choice" role="group" aria-label="Classification for Hydrogen">
+                <button type="button" class="segmented-btn" data-choice="single">Single Atoms</button>
+                <button type="button" class="segmented-btn" data-choice="molecules">Molecules</button>
+                <button type="button" class="segmented-btn" data-choice="lattice">Lattice</button>
+              </div>
+              <button type="button" class="hint-toggle-btn" data-hint-toggle>Show Hint</button>
+              <div class="hint-box" hidden>Notice the atoms travel around in bonded pairs of two.</div>
+            </div>
+
+            <div class="challenge-card" data-particle-card="gold" data-label="Gold" data-answer="lattice">
+              <div class="challenge-card-head">
+                <strong>Gold</strong>
+                <span class="gallery-symbol">Au</span>
+              </div>
+              <div class="particle-svg-frame">
+                <svg viewBox="0 0 140 84" width="130" height="78" aria-label="Tightly packed grid of gold atoms">
+                  <g fill="#FBBF24" stroke="#92400E" stroke-width="1.6">
+                    <circle cx="42" cy="22" r="8.5" /><circle cx="59" cy="22" r="8.5" /><circle cx="76" cy="22" r="8.5" /><circle cx="93" cy="22" r="8.5" />
+                    <circle cx="42" cy="39" r="8.5" /><circle cx="59" cy="39" r="8.5" /><circle cx="76" cy="39" r="8.5" /><circle cx="93" cy="39" r="8.5" />
+                    <circle cx="42" cy="56" r="8.5" /><circle cx="59" cy="56" r="8.5" /><circle cx="76" cy="56" r="8.5" /><circle cx="93" cy="56" r="8.5" />
+                  </g>
+                </svg>
+              </div>
+              <div class="segmented-choice" role="group" aria-label="Classification for Gold">
+                <button type="button" class="segmented-btn" data-choice="single">Single Atoms</button>
+                <button type="button" class="segmented-btn" data-choice="molecules">Molecules</button>
+                <button type="button" class="segmented-btn" data-choice="lattice">Lattice</button>
+              </div>
+              <button type="button" class="hint-toggle-btn" data-hint-toggle>Show Hint</button>
+              <div class="hint-box" hidden>Gold is a solid metal—every atom is packed into one continuous grid.</div>
+            </div>
+
+            <div class="challenge-card" data-particle-card="neon" data-label="Neon" data-answer="single">
+              <div class="challenge-card-head">
+                <strong>Neon</strong>
+                <span class="gallery-symbol">Ne</span>
+              </div>
+              <div class="particle-svg-frame">
+                <svg viewBox="0 0 140 84" width="130" height="78" aria-label="Separated single neon atoms">
+                  <circle cx="28" cy="24" r="8.5" fill="#F472B6" stroke="#9D174D" stroke-width="1.8" />
+                  <circle cx="94" cy="22" r="8.5" fill="#F472B6" stroke="#9D174D" stroke-width="1.8" />
+                  <circle cx="62" cy="52" r="8.5" fill="#F472B6" stroke="#9D174D" stroke-width="1.8" />
+                  <circle cx="114" cy="60" r="8.5" fill="#F472B6" stroke="#9D174D" stroke-width="1.8" />
+                </svg>
+              </div>
+              <div class="segmented-choice" role="group" aria-label="Classification for Neon">
+                <button type="button" class="segmented-btn" data-choice="single">Single Atoms</button>
+                <button type="button" class="segmented-btn" data-choice="molecules">Molecules</button>
+                <button type="button" class="segmented-btn" data-choice="lattice">Lattice</button>
+              </div>
+              <button type="button" class="hint-toggle-btn" data-hint-toggle>Show Hint</button>
+              <div class="hint-box" hidden>None of the neon atoms are touching or bonded to another atom.</div>
+            </div>
+
+            <div class="challenge-card" data-particle-card="sodium" data-label="Sodium" data-answer="lattice">
+              <div class="challenge-card-head">
+                <strong>Sodium</strong>
+                <span class="gallery-symbol">Na</span>
+              </div>
+              <div class="particle-svg-frame">
+                <svg viewBox="0 0 140 84" width="130" height="78" aria-label="Regular grid of sodium atoms">
+                  <g fill="#CBD5E1" stroke="#334155" stroke-width="1.6">
+                    <circle cx="42" cy="22" r="8.5" /><circle cx="59" cy="22" r="8.5" /><circle cx="76" cy="22" r="8.5" /><circle cx="93" cy="22" r="8.5" />
+                    <circle cx="42" cy="39" r="8.5" /><circle cx="59" cy="39" r="8.5" /><circle cx="76" cy="39" r="8.5" /><circle cx="93" cy="39" r="8.5" />
+                    <circle cx="42" cy="56" r="8.5" /><circle cx="59" cy="56" r="8.5" /><circle cx="76" cy="56" r="8.5" /><circle cx="93" cy="56" r="8.5" />
+                  </g>
+                </svg>
+              </div>
+              <div class="segmented-choice" role="group" aria-label="Classification for Sodium">
+                <button type="button" class="segmented-btn" data-choice="single">Single Atoms</button>
+                <button type="button" class="segmented-btn" data-choice="molecules">Molecules</button>
+                <button type="button" class="segmented-btn" data-choice="lattice">Lattice</button>
+              </div>
+              <button type="button" class="hint-toggle-btn" data-hint-toggle>Show Hint</button>
+              <div class="hint-box" hidden>All the atoms are locked together in rows and columns.</div>
+            </div>
+
+            <div class="challenge-card" data-particle-card="iron" data-label="Iron" data-answer="lattice">
+              <div class="challenge-card-head">
+                <strong>Iron</strong>
+                <span class="gallery-symbol">Fe</span>
+              </div>
+              <div class="particle-svg-frame">
+                <svg viewBox="0 0 140 84" width="130" height="78" aria-label="Tightly bonded grid of iron atoms">
+                  <g fill="#94A3B8" stroke="#1E293B" stroke-width="1.6">
+                    <circle cx="42" cy="22" r="8.5" /><circle cx="59" cy="22" r="8.5" /><circle cx="76" cy="22" r="8.5" /><circle cx="93" cy="22" r="8.5" />
+                    <circle cx="42" cy="39" r="8.5" /><circle cx="59" cy="39" r="8.5" /><circle cx="76" cy="39" r="8.5" /><circle cx="93" cy="39" r="8.5" />
+                    <circle cx="42" cy="56" r="8.5" /><circle cx="59" cy="56" r="8.5" /><circle cx="76" cy="56" r="8.5" /><circle cx="93" cy="56" r="8.5" />
+                  </g>
+                </svg>
+              </div>
+              <div class="segmented-choice" role="group" aria-label="Classification for Iron">
+                <button type="button" class="segmented-btn" data-choice="single">Single Atoms</button>
+                <button type="button" class="segmented-btn" data-choice="molecules">Molecules</button>
+                <button type="button" class="segmented-btn" data-choice="lattice">Lattice</button>
+              </div>
+              <button type="button" class="hint-toggle-btn" data-hint-toggle>Show Hint</button>
+              <div class="hint-box" hidden>Like other metals, solid iron forms a repeating atomic grid.</div>
+            </div>
+
+            <div class="challenge-card" data-particle-card="chlorine" data-label="Chlorine" data-answer="molecules">
+              <div class="challenge-card-head">
+                <strong>Chlorine</strong>
+                <span class="gallery-symbol">Cl<sub>2</sub></span>
+              </div>
+              <div class="particle-svg-frame">
+                <svg viewBox="0 0 140 84" width="130" height="78" aria-label="Pairs of bonded chlorine atoms">
+                  <circle cx="34" cy="28" r="9" fill="#34D399" stroke="#065F46" stroke-width="1.8" />
+                  <circle cx="51" cy="28" r="9" fill="#34D399" stroke="#065F46" stroke-width="1.8" />
+                  <circle cx="88" cy="24" r="9" fill="#34D399" stroke="#065F46" stroke-width="1.8" />
+                  <circle cx="102" cy="34" r="9" fill="#34D399" stroke="#065F46" stroke-width="1.8" />
+                  <circle cx="62" cy="58" r="9" fill="#34D399" stroke="#065F46" stroke-width="1.8" />
+                  <circle cx="79" cy="58" r="9" fill="#34D399" stroke="#065F46" stroke-width="1.8" />
+                </svg>
+              </div>
+              <div class="segmented-choice" role="group" aria-label="Classification for Chlorine">
+                <button type="button" class="segmented-btn" data-choice="single">Single Atoms</button>
+                <button type="button" class="segmented-btn" data-choice="molecules">Molecules</button>
+                <button type="button" class="segmented-btn" data-choice="lattice">Lattice</button>
+              </div>
+              <button type="button" class="hint-toggle-btn" data-hint-toggle>Show Hint</button>
+              <div class="hint-box" hidden>Each chlorine unit is a pair of bonded atoms floating separately.</div>
+            </div>
+          </div>
+
+          <div class="classify-actions">
+            <button type="button" class="btn btn-primary btn-sm" data-particle-check>Check All 6</button>
+            <button type="button" class="btn btn-secondary btn-sm" data-particle-reset>Reset</button>
+          </div>
+          <div class="activity-feedback" aria-live="polite"></div>
+        </section>
+
+        <!-- Slide 6: Spell Words with Element Symbols -->
+        <section
+          class="slide activity-card"
+          data-slide-title="Spell Words with Element Symbols"
+          data-activity="symbol-speller"
+          data-activity-id="l1-word-game"
+          aria-labelledby="speller-heading"
+        >
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 06 · Interactive Game</span>
+          </div>
+          <div class="activity-header">
+            <div>
+              <h2 class="activity-title slide-title-md" id="speller-heading">Spell Words with Element Symbols</h2>
+              <p class="activity-prompt">
+                Can you spell the longest real word using only Periodic Table symbols? Try examples
+                like <strong>Ba-Na-Na</strong> (Barium, Sodium, Sodium), <strong>B-Ac-O-N</strong>,
+                <strong>P-H-O-Ne</strong>, or <strong>C-H-O-C-O-La-Te</strong>!
+              </p>
+            </div>
+            <span class="tabular-nums" id="speller-best-score" style="font-size: 0.8125rem; color: var(--text-muted);">
+              No valid words tested yet
+            </span>
+          </div>
+
+          <div class="speller-input-row">
+            <label class="sr-only" for="speller-word-input">Enter a word to test against element symbols</label>
+            <input
+              id="speller-word-input"
+              class="speller-input"
+              type="text"
+              placeholder="Type a word (e.g. banana, bacon, phone, chocolate)..."
+              autocomplete="off"
+            />
+            <button type="button" class="btn btn-primary" id="speller-test-btn">Test Word</button>
+            <button type="button" class="btn btn-secondary" id="speller-clear-btn">Clear</button>
+          </div>
+
+          <div>
+            <p class="field-help" style="margin-bottom: 6px;">Quick symbol builder chips (click to append):</p>
+            <div class="speller-chips">
+              <button type="button" class="speller-chip" data-speller-chip="Ba">Ba</button>
+              <button type="button" class="speller-chip" data-speller-chip="Na">Na</button>
+              <button type="button" class="speller-chip" data-speller-chip="B">B</button>
+              <button type="button" class="speller-chip" data-speller-chip="Ac">Ac</button>
+              <button type="button" class="speller-chip" data-speller-chip="O">O</button>
+              <button type="button" class="speller-chip" data-speller-chip="N">N</button>
+              <button type="button" class="speller-chip" data-speller-chip="P">P</button>
+              <button type="button" class="speller-chip" data-speller-chip="H">H</button>
+              <button type="button" class="speller-chip" data-speller-chip="Ne">Ne</button>
+              <button type="button" class="speller-chip" data-speller-chip="C">C</button>
+              <button type="button" class="speller-chip" data-speller-chip="La">La</button>
+              <button type="button" class="speller-chip" data-speller-chip="Te">Te</button>
+              <button type="button" class="speller-chip" data-speller-chip="Si">Si</button>
+              <button type="button" class="speller-chip" data-speller-chip="Ar">Ar</button>
+              <button type="button" class="speller-chip" data-speller-chip="K">K</button>
+            </div>
+          </div>
+
+          <div class="speller-tiles-row" id="speller-tiles-out" hidden></div>
+          <div class="activity-feedback" aria-live="polite"></div>
+
+          <div>
+            <p class="field-help" style="margin-bottom: 6px;">Your valid element words:</p>
+            <div class="speller-saved-words" id="speller-saved-words"></div>
+          </div>
+        </section>
+
+        <!-- Slide 7: Quick Check Quiz -->
+        <section
+          class="slide activity-card"
+          data-slide-title="Quick Check: Name These Symbols"
+          data-activity="symbol-quiz"
+          data-activity-id="l1-symbol-quiz"
+          aria-labelledby="quick-check-heading"
+        >
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 07 · Quick Check</span>
+          </div>
+          <div class="activity-header">
+            <div>
+              <h2 class="activity-title slide-title-md" id="quick-check-heading">Quick Check — Name These Symbols</h2>
+              <p class="activity-prompt">
+                Type the full element name for each symbol below, then click Check Answers.
+              </p>
+            </div>
+          </div>
+
+          <div class="symbol-quiz-grid">
+            <div class="symbol-quiz-item" data-symbol-key="He" data-symbol-answer="helium">
+              <div class="symbol-quiz-badge"><span>He</span><span class="tabular-nums" style="font-size: 0.75rem; color: var(--text-muted);">#2</span></div>
+              <label class="sr-only" for="quiz-he">Element name for He</label>
+              <input id="quiz-he" class="table-input" type="text" placeholder="Element name..." autocomplete="off" />
+            </div>
+
+            <div class="symbol-quiz-item" data-symbol-key="N" data-symbol-answer="nitrogen">
+              <div class="symbol-quiz-badge"><span>N</span><span class="tabular-nums" style="font-size: 0.75rem; color: var(--text-muted);">#7</span></div>
+              <label class="sr-only" for="quiz-n">Element name for N</label>
+              <input id="quiz-n" class="table-input" type="text" placeholder="Element name..." autocomplete="off" />
+            </div>
+
+            <div class="symbol-quiz-item" data-symbol-key="O" data-symbol-answer="oxygen">
+              <div class="symbol-quiz-badge"><span>O</span><span class="tabular-nums" style="font-size: 0.75rem; color: var(--text-muted);">#8</span></div>
+              <label class="sr-only" for="quiz-o">Element name for O</label>
+              <input id="quiz-o" class="table-input" type="text" placeholder="Element name..." autocomplete="off" />
+            </div>
+
+            <div class="symbol-quiz-item" data-symbol-key="K" data-symbol-answer="potassium">
+              <div class="symbol-quiz-badge"><span>K</span><span class="tabular-nums" style="font-size: 0.75rem; color: var(--text-muted);">#19</span></div>
+              <label class="sr-only" for="quiz-k">Element name for K</label>
+              <input id="quiz-k" class="table-input" type="text" placeholder="Element name..." autocomplete="off" />
+            </div>
+
+            <div class="symbol-quiz-item" data-symbol-key="Si" data-symbol-answer="silicon">
+              <div class="symbol-quiz-badge"><span>Si</span><span class="tabular-nums" style="font-size: 0.75rem; color: var(--text-muted);">#14</span></div>
+              <label class="sr-only" for="quiz-si">Element name for Si</label>
+              <input id="quiz-si" class="table-input" type="text" placeholder="Element name..." autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="classify-actions">
+            <button type="button" class="btn btn-primary btn-sm" data-symbol-quiz-check>Check Answers</button>
+          </div>
+          <div class="activity-feedback" aria-live="polite"></div>
+        </section>
+
+        <!-- Slide 8: Key Ideas Summary & Wrap-Up -->
+        <section class="slide key-ideas-card" data-slide-title="Key Ideas Summary" aria-labelledby="l1-key-ideas-heading">
+          <div class="slide-header-meta">
+            <span class="slide-kicker">Slide 08 · Summary</span>
+          </div>
+          <h2 class="slide-title-md" id="l1-key-ideas-heading">Key Ideas Summary</h2>
+          <ul class="key-ideas-list">
+            <li data-reveal-step data-reveal-label="Key Idea 1: Elements — click or press Space to reveal">
+              <strong>Elements:</strong> Pure substances made of only one kind of atom—they cannot be
+              broken down into simpler chemical substances.
+            </li>
+            <li data-reveal-step data-reveal-label="Key Idea 2: Single Atoms — click or press Space to reveal">
+              <strong>Single Atoms:</strong> Individual atoms moving independently without bonding to
+              one another (such as Neon and Helium).
+            </li>
+            <li data-reveal-step data-reveal-label="Key Idea 3: Molecules — click or press Space to reveal">
+              <strong>Molecules:</strong> Small groups of two or more atoms bonded tightly together
+              (such as H<sub>2</sub> and Cl<sub>2</sub>).
+            </li>
+            <li data-reveal-step data-reveal-label="Key Idea 4: Lattices — click or press Space to reveal">
+              <strong>Lattices:</strong> Huge, repeating 3D grids of atoms bonded continuously to
+              their neighbours (such as Gold, Iron, and Sodium).
+            </li>
           </ul>
-        </div>
-      </section>
 
-      <!-- LESSON CONTENT & INTERACTIVES GO HERE -->
-      <section class="lesson-section-card" aria-label="Lesson content placeholder">
-        <h2>Lesson Activities</h2>
-        <div class="skeleton-slot">
-          <span class="skeleton-slot-title">Lesson 1 Content Placeholder</span>
-          <p>
-            This lesson page is wired to the shared progress bar, Periodic Table modal, local
-            auto-save, and export tools. Full explanations, particle diagrams, and interactive
-            activities will be added here next.
-          </p>
-        </div>
-      </section>
-
-      <nav class="lesson-footer-nav" aria-label="Lesson tools and pagination">
-        <div class="lesson-footer-tools">
-          <button type="button" class="btn btn-secondary btn-sm" data-export-summary>
-            Print / Export Summary
-          </button>
-          <button type="button" class="btn btn-danger-outline btn-sm" data-reset-progress>
-            Reset My Progress
-          </button>
-        </div>
-        <div class="lesson-footer-pager">
-          <a class="btn btn-secondary btn-sm" href="./index.html">Back to Unit Hub</a>
-          <a class="btn btn-primary btn-sm" href="./lesson-2.html">Next: Lesson 2</a>
-        </div>
-      </nav>
+          <nav class="lesson-footer-nav" aria-label="Lesson tools and pagination" style="margin-top: auto;">
+            <div class="lesson-footer-tools">
+              <button type="button" class="btn btn-secondary btn-sm" data-export-summary>
+                Print / Export Summary
+              </button>
+              <button type="button" class="btn btn-danger-outline btn-sm" data-reset-progress>
+                Reset My Progress
+              </button>
+            </div>
+            <div class="lesson-footer-pager">
+              <a class="btn btn-secondary btn-sm" href="./index.html">Back to Unit Hub</a>
+              <a class="btn btn-primary btn-sm" href="./lesson-2.html">Next: Lesson 2</a>
+            </div>
+          </nav>
+        </section>
+      </div>
     </main>
 
     <script type="module" src="./assets/app.js"></script>
