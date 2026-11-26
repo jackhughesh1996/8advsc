@@ -27,6 +27,7 @@ export const LESSONS = [
     number: 2,
     title: 'Inside the Atom & Fundamental Forces',
     href: './lesson-2.html',
+    worksheetHref: './lesson-2-worksheet.html',
     summary:
       'Explore protons, neutrons, electrons, the 2, 8, 8, 18, 18, 32, 32 shell filling sequence (2, 8, 8, 2 for the first 20), and how the strong nuclear force and electrostatic force hold atoms together.',
     successCriteria: [
@@ -519,7 +520,10 @@ export function renderUnitHubCards() {
       </div>
       <div class="lesson-card-footer">
         <span class="lesson-card-progress-text">${progressMeta}</span>
-        <a class="btn btn-primary btn-sm" href="${lesson.href}">Open Lesson ${lesson.number}</a>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          ${lesson.worksheetHref ? `<a class="btn btn-secondary btn-sm" href="${lesson.worksheetHref}">Worksheet</a>` : ''}
+          <a class="btn btn-primary btn-sm" href="${lesson.href}">Open Lesson ${lesson.number}</a>
+        </div>
       </div>
     `;
 
@@ -4938,6 +4942,7 @@ export function initSlideshow(lessonId) {
     </div>
 
     <div class="projector-topbar-right">
+      ${lessonMeta?.worksheetHref ? `<a class="proj-btn" href="${lessonMeta.worksheetHref}" title="Open Printable Worksheet & Answer Key">Worksheet</a>` : ''}
       <button type="button" class="proj-btn" id="proj-pt-btn" title="Open Periodic Table">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <rect x="3" y="4" width="18" height="16" rx="2" />

@@ -13,6 +13,7 @@ export default defineConfig({
         unitHub: path.resolve(__dirname, 'elements-and-compounds/index.html'),
         lesson1: path.resolve(__dirname, 'elements-and-compounds/lesson-1.html'),
         lesson2: path.resolve(__dirname, 'elements-and-compounds/lesson-2.html'),
+        lesson2Worksheet: path.resolve(__dirname, 'elements-and-compounds/lesson-2-worksheet.html'),
         lesson3: path.resolve(__dirname, 'elements-and-compounds/lesson-3.html'),
         lesson4: path.resolve(__dirname, 'elements-and-compounds/lesson-4.html'),
         lesson5: path.resolve(__dirname, 'elements-and-compounds/lesson-5.html'),
