@@ -3998,6 +3998,55 @@ body.is-slideshow-mode .projector-bottombar {
 
 .cosmic-stage-panel {
   min-height: 0;
+  padding-block: 12px;
+  gap: 6px;
+}
+
+.cosmic-visual {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+}
+
+.cosmic-scene {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  border-radius: var(--radius-sm);
+  cursor: grab;
+  touch-action: none;
+}
+
+.cosmic-scene:active {
+  cursor: grabbing;
+}
+
+.cosmic-view-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px 12px;
+  flex-wrap: wrap;
+  color: var(--text-body);
+  font-size: 0.78rem;
+}
+
+.cosmic-view-controls div {
+  display: flex;
+  gap: 4px;
+}
+
+.cosmic-view-controls .btn {
+  padding: 3px 7px;
+  min-height: 26px;
+  font-size: 0.78rem;
+}
+
+.cosmic-scene[hidden],
+.cosmic-view-controls[hidden],
+.cosmic-svg.is-hidden {
+  display: none;
 }
 
 .cosmic-svg {

@@ -4,6 +4,7 @@
  */
 
 import { SOLAR_ABUNDANCES } from './solar-abundances.js';
+import { createCosmicScenes } from './cosmic-scenes.js';
 
 export const STORAGE_KEY = 'elements_compounds_unit_v2';
 
@@ -3764,6 +3765,13 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
   const activityId = container.dataset.activityId;
   const tabBtns = Array.from(container.querySelectorAll('[data-cosmic-stage]'));
   const svg = container.querySelector('#cosmic-timeline-svg');
+  const canvas = container.querySelector('#cosmic-scene');
+  const viewer = createCosmicScenes(canvas);
+  const viewControls = container.querySelector('[data-cosmic-view-controls]');
+  viewControls.querySelectorAll('[data-cosmic-rotate]').forEach((button) => {
+    button.addEventListener('click', () => viewer?.rotate(Number(button.dataset.cosmicRotate) * 0.19));
+  });
+  viewControls.querySelector('[data-cosmic-reset-view]').addEventListener('click', () => viewer?.resetView());
   const badge = container.querySelector('[data-cosmic-badge]');
   const title = container.querySelector('[data-cosmic-title]');
   const explanation = container.querySelector('[data-cosmic-explanation]');
@@ -3803,19 +3811,23 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
     </g>`;
   }
 
-  function earlyUniverse(expanded) {
-    const spacing = expanded ? 83 : 37;
+  function earlyUniverse(expansion, hasNucleus = false) {
+    const spacing = 37 * expansion;
+    const ends = [240 - 70 * expansion, 240 + 70 * expansion];
     const particles = Array.from({ length: 15 }, (_, i) => {
       const cx = 240 + ((i % 5) - 2) * spacing + (i % 3 - 1) * 7;
-      const cy = 76 + (Math.floor(i / 5) - 1) * (expanded ? 32 : 19);
+      const cy = 76 + (Math.floor(i / 5) - 1) * (19 * expansion);
       const proton = i % 3 !== 1;
       return `<circle cx="${cx}" cy="${cy}" r="7.5" fill="${proton ? '#DC2626' : '#64748B'}" stroke="white" />
         ${proton ? `<text x="${cx}" y="${cy + 4}" class="cosmic-proton-mark">+</text>` : ''}`;
     }).join('');
     return `<g class="cosmic-svg-label">
-      <rect x="${expanded ? 29 : 135}" y="${expanded ? 24 : 40}" width="${expanded ? 422 : 210}" height="${expanded ? 104 : 72}" rx="10" fill="#1e293b" stroke="#94a3b8" stroke-dasharray="4 4" />
       ${particles}
-      <text x="240" y="152">${expanded ? 'Expanded and cooler' : 'Hot and dense'}</text>
+      <line x1="${ends[0]}" x2="${ends[1]}" y1="112" y2="112" stroke="#fcd34d" stroke-dasharray="5 4" />
+      ${ends.map((x, i) => `<circle cx="${x}" cy="112" r="10" fill="#25241d" stroke="#fcd34d" />
+        <text x="${x}" y="116" font-size="11">${i === 0 ? 'A' : 'B'}</text>`).join('')}
+      ${hasNucleus ? nucleus(235, 39, 2, 2, 'Light nucleus', '') : ''}
+      <text x="240" y="152">${expansion > 1 ? 'Expanded and cooler' : 'Hot and dense'}</text>
       <text class="cosmic-svg-detail" x="240" y="174">A patch of the early universe</text>
     </g>`;
   }
@@ -3831,18 +3843,20 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
       <circle cx="240" cy="71" r="${radius}" fill="${ironRich ? '#475569' : '#fde68a'}" stroke="#f8fafc" />
       <text x="240" y="77" fill="${ironRich ? '#f8fafc' : '#1e293b'}">${ironRich ? 'Fe' : 'Core'}</text>
       ${arrows}
+      ${ironRich ? '<text x="266" y="47" fill="#7dd3fc">O</text><text x="214" y="95" fill="#c4b5fd">Si</text>' : ''}
       <text x="240" y="151">${collapsing ? 'Gravity pulls the core inward' : ironRich ? 'Iron-rich core in a massive star' : 'Fusion takes place in the hot core'}</text>
     </g>`;
   }
 
-  function supernovaShock() {
-    const ejecta = [[125, 60, 'O'], [151, 109, 'Si'], [344, 53, 'C'], [355, 110, 'O']];
+  function supernovaShock(ejected = false) {
+    const spread = ejected ? 75 : 0;
+    const ejecta = [[151 - spread, 109, 'Si'], [318 + spread, 52, 'O']];
     return `<g class="cosmic-svg-label">
-      <g class="cosmic-shock-ring"><ellipse cx="240" cy="75" rx="121" ry="55" fill="none" stroke="#fbbf24" stroke-width="3" />
+      <g class="cosmic-shock-ring"><ellipse cx="240" cy="75" rx="${ejected ? 156 : 98}" ry="55" fill="none" stroke="#fbbf24" stroke-width="3" />
       <ellipse cx="240" cy="75" rx="83" ry="39" fill="none" stroke="#f97316" stroke-dasharray="5 5" /></g>
       <circle cx="240" cy="75" r="12" fill="#fef3c7" />
       ${ejecta.map(([x, y, el]) => `<text x="${x}" y="${y}">${el}</text>`).join('')}
-      <text x="240" y="150">Shock wave ejects the outer layers</text>
+      <text x="240" y="150">${ejected ? 'Outer layers escape into space' : 'Shock heats the outer layers'}</text>
       <text class="cosmic-svg-detail" x="240" y="173">Elements spread into surrounding space</text>
     </g>`;
   }
@@ -3860,17 +3874,27 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
       steps: [
         {
           name: 'A hot, dense early universe',
-          explanation: 'In the first moments, the universe was hot and dense. As space expanded, the particles spread out and the temperature fell. The model shows one patch of space at two times.',
+          explanation: 'In the first moments, the universe was hot and dense. As space expanded, the particles spread out and the temperature fell. Track the same two particles, A and B, across three moments.',
           button: 'Watch the universe expand',
           imageLabel: 'A model of a hot, dense patch of the early universe containing free protons and neutrons.',
-          graphic: earlyUniverse(false),
+          scene: 'dense',
+          graphic: earlyUniverse(1),
         },
         {
           name: 'Expansion cools the universe',
           explanation: 'At first, energetic collisions broke light nuclei apart. As the universe cooled, protons and neutrons could join and stay together. That opened a short window for making light nuclei.',
-          button: 'Identify the light nuclei',
-          imageLabel: 'The same patch of space has expanded. Protons and neutrons are farther apart.',
-          graphic: earlyUniverse(true),
+          button: 'Keep following the expansion',
+          imageLabel: 'The same patch of space has expanded. Markers A and B are farther apart as the distance between the grid lines grows.',
+          scene: 'cooling',
+          graphic: earlyUniverse(1.6),
+        },
+        {
+          name: 'Light nuclei can stay together',
+          explanation: 'The space between A and B has grown again. By this point, the universe has cooled enough for some protons and neutrons to stay bound in light nuclei. Many protons still remain on their own.',
+          button: 'Zoom in on the light nuclei',
+          imageLabel: 'An expanded grid with two tracked particles farther apart. A cluster of two protons and two neutrons represents a light nucleus.',
+          scene: 'nuclei',
+          graphic: earlyUniverse(2.08, true),
         },
         {
           explanation: 'Some protons and neutrons combined in a series of reactions. Many protons stayed on their own.',
@@ -3905,12 +3929,13 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
           explanation: 'Gravity pulls gas inward, compressing and heating the core. The nuclei there move fast enough for some to get close and fuse despite the repulsion between their positive charges.',
           button: 'Show hydrogen fusion',
           imageLabel: 'A star in cross-section, with fusion taking place at its hot centre.',
+          scene: 'hotCore',
           graphic: stellarCore(),
         },
         {
           name: 'Hydrogen fusion powers a star',
           explanation: 'A chain of reactions turns four hydrogen nuclei into one helium nucleus and releases energy. Two of the starting protons become neutrons. This energy helps a star shine.',
-          button: 'Model helium fusion',
+          button: 'Find the helium-burning core',
           imageLabel: 'Four hydrogen nuclei become one helium-4 nucleus. The diagram represents the net result of several reactions.',
           graphic: `<g class="cosmic-svg-label">
             ${[57, 105, 153, 201].map((cx) => `<circle cx="${cx}" cy="74" r="8" fill="#dc2626" stroke="white" /><text x="${cx}" y="78" class="cosmic-proton-mark">+</text>`).join('')}
@@ -3919,6 +3944,14 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
             <text x="317" y="80" font-size="24">→</text>
             ${nucleus(414, 74, ...helium, 'cosmic-fusion-product')}
           </g>`,
+        },
+        {
+          name: 'The core gets hot enough to fuse helium',
+          explanation: 'Later in this massive star’s life, the core contracts and heats as it runs out of hydrogen fuel. Helium can now fuse there to produce carbon. Further reactions also make oxygen.',
+          button: 'Zoom in on helium nuclei',
+          imageLabel: 'A cutaway of the same massive star highlights the core where helium fuses to make carbon and oxygen.',
+          scene: 'heliumCore',
+          graphic: stellarCore(),
         },
         {
           explanation: 'As some stars evolve, their interiors become hot enough for helium nuclei to fuse.',
@@ -3947,8 +3980,10 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
         },
         {
           name: 'An iron-rich core forms',
-          explanation: 'Very massive stars reach higher core temperatures and build iron-group nuclei. Fusing nuclei like iron no longer supplies the energy the star needs. As the iron-rich core grows, it can become unstable.',
+          explanation: 'Very massive stars reach higher core temperatures and build iron-group nuclei. Fusing nuclei like iron no longer supplies the energy the star needs. The cutaway marks oxygen-rich and silicon-rich material outside the core. Follow those same two parcels into the supernova.',
           imageLabel: 'A cross-section of an evolved massive star with an iron-rich core.',
+          scene: 'ironCore',
+          fallbackLabel: 'A simplified cross-section with an iron-rich core and oxygen-rich and silicon-rich material in the layers around it.',
           graphic: stellarCore(true),
         },
       ],
@@ -3962,14 +3997,24 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
           explanation: 'When the iron-rich core can no longer support itself, gravity crushes it inward. The collapse can launch a shock wave that moves out through the star.',
           button: 'Follow the shock wave',
           imageLabel: 'Arrows point inward towards the collapsing iron-rich core.',
+          scene: 'collapse',
           graphic: stellarCore(true, true),
         },
         {
           name: 'A supernova spreads the elements',
-          explanation: 'The shock heats and ejects the outer layers. The explosion spreads elements the star already made, such as oxygen and silicon. Some new nuclei form in the hot shocked material.',
-          button: 'Zoom in on neutron capture',
-          imageLabel: 'An expanding shock wave carries carbon, oxygen and silicon out into space.',
+          explanation: 'The core has collapsed inward. The shock now moves outward through the star, heating its outer layers. Some new nuclei form in this hot shocked material.',
+          button: 'Follow the ejected material',
+          imageLabel: 'The star cutaway keeps the same camera angle. A dashed spherical shock front expands through its layers.',
+          scene: 'shock',
           graphic: supernovaShock(),
+        },
+        {
+          name: 'The outer layers are ejected',
+          explanation: 'Follow the oxygen-rich and silicon-rich parcels out into space. The star had already made those elements. The explosion spreads that material into gas that can later form new stars and planets.',
+          button: 'Zoom in on neutron capture',
+          imageLabel: 'The oxygen-rich and silicon-rich parcels travel outward from their original positions. The shock front extends beyond the star.',
+          scene: 'ejecta',
+          graphic: supernovaShock(true),
         },
         {
           explanation: 'Neutron capture is another way to build heavier nuclei. A free neutron can join a nucleus without being repelled by its protons.',
@@ -3989,14 +4034,19 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
 
   const saved = getLessonState(lessonId).activities?.[activityId] || {};
   const stageIds = Object.keys(stages);
+  const previousStepIndex = {
+    'big-bang': [0, 1, 3, 4],
+    stars: [0, 1, 3, 4, 5, 6, 7],
+    supernova: [0, 1, 3, 4],
+  };
   const steps = Object.fromEntries(stageIds.map((id) => {
-    const savedStep = saved.sequenceVersion === 2 ? saved.steps?.[id] : 0;
+    const savedStep = saved.sequenceVersion === 3 ? saved.steps?.[id] : previousStepIndex[id][saved.steps?.[id]];
     return [id, Number.isInteger(savedStep) && savedStep >= 0 && savedStep < stages[id].steps.length ? savedStep : 0];
   }));
   const completedStages = new Set(Array.isArray(saved.completedStages)
     ? saved.completedStages.filter((id) => stageIds.includes(id))
     : saved.completed ? stageIds : []);
-  let currentStage = saved.sequenceVersion === 2 && stageIds.includes(saved.currentStage) ? saved.currentStage : stageIds[0];
+  let currentStage = stageIds.includes(saved.currentStage) ? saved.currentStage : stageIds[0];
 
   function render() {
     const stage = stages[currentStage];
@@ -4009,8 +4059,15 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
 
     badge.textContent = stage.badge;
     title.textContent = step.name || stage.title;
-    svg.setAttribute('aria-label', step.imageLabel);
+    const showScene = Boolean(viewer && step.scene);
+    canvas.hidden = !showScene;
+    svg.hidden = showScene;
+    svg.classList.toggle('is-hidden', showScene);
+    viewControls.hidden = !showScene;
+    canvas.setAttribute('aria-label', step.imageLabel);
+    svg.setAttribute('aria-label', step.fallbackLabel || step.imageLabel);
     svg.innerHTML = step.graphic;
+    viewer?.show(showScene ? step.scene : null);
     explanation.textContent = step.explanation || '';
     explanation.hidden = !step.explanation;
     question.textContent = step.question || '';
@@ -4028,7 +4085,7 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
       type: 'cosmic-timeline',
       title: titleText,
       currentStage,
-      sequenceVersion: 2,
+      sequenceVersion: 3,
       steps,
       completedStages: Array.from(completedStages),
       answerSummary: `${completedStages.size}/${stageIds.length} stages completed`,
