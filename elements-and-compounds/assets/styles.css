@@ -4101,6 +4101,10 @@ body.is-slideshow-mode .projector-bottombar {
 }
 
 /* Cosmic Abundance SVG Chart (Lesson 3 Slide 3) */
+.slide[data-activity="abundance-chart"] {
+  gap: 12px;
+}
+
 .abundance-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -4169,6 +4173,39 @@ body.is-slideshow-mode .projector-bottombar {
 .abundance-origin-note {
   color: var(--text-muted);
   font-size: 0.85rem;
+}
+
+.abundance-layout {
+  display: grid;
+  gap: 12px;
+}
+
+.abundance-layout:has(.abundance-chart-frame[hidden]) {
+  display: none;
+}
+
+@media (min-width: 980px) {
+  .abundance-toolbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .abundance-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.4fr);
+    align-items: start;
+  }
+
+  .abundance-layout .abundance-inspector-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .abundance-layout .abundance-inspector-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
 }
 
 /* Binding Energy Curve (Lesson 3 Slide 5) */

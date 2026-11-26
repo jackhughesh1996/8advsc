@@ -185,30 +185,32 @@
 
           <p class="cosmic-handoff" data-abundance-prompt aria-live="polite"></p>
 
-          <div class="abundance-chart-frame" hidden>
-            <svg
-              id="abundance-svg"
-              class="abundance-svg"
-              viewBox="0 0 760 225"
-              role="group"
-              aria-label="Logarithmic chart of cosmic abundance in atoms per million silicon atoms"
-            ></svg>
-          </div>
+          <div class="abundance-layout">
+            <div class="abundance-chart-frame" hidden>
+              <svg
+                id="abundance-svg"
+                class="abundance-svg"
+                viewBox="0 0 760 225"
+                role="group"
+                aria-label="Logarithmic chart of cosmic abundance in atoms per million silicon atoms"
+              ></svg>
+            </div>
 
-          <div class="abundance-inspector-row" hidden>
-            <div class="abundance-detail-box" data-abundance-inspector aria-live="polite"></div>
+            <div class="abundance-inspector-row" hidden>
+              <div class="abundance-detail-box" data-abundance-inspector aria-live="polite"></div>
 
-            <div class="abundance-check-box" hidden>
-              <strong style="font-size: 0.9rem; color: var(--text-heading);">Which elements often form peaks above their neighbours?</strong>
-              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <button type="button" class="mini-quiz-opt" data-abundance-choice="even" aria-pressed="false">
-                  Even atomic numbers (C, O, Ne, Mg, Si, Fe)
-                </button>
-                <button type="button" class="mini-quiz-opt" data-abundance-choice="odd" aria-pressed="false">
-                  Odd atomic numbers (B, N, F, Na, Al)
-                </button>
+              <div class="abundance-check-box" hidden>
+                <strong style="font-size: 0.9rem; color: var(--text-heading);">Which elements often form peaks above their neighbours?</strong>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button type="button" class="mini-quiz-opt" data-abundance-choice="even" aria-pressed="false">
+                    Even atomic numbers
+                  </button>
+                  <button type="button" class="mini-quiz-opt" data-abundance-choice="odd" aria-pressed="false">
+                    Odd atomic numbers
+                  </button>
+                </div>
+                <div class="activity-feedback" data-abundance-feedback aria-live="polite"></div>
               </div>
-              <div class="activity-feedback" data-abundance-feedback aria-live="polite"></div>
             </div>
           </div>
         </section>
