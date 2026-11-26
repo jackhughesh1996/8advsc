@@ -3,6 +3,8 @@
  * for the "Elements and Compounds" 7-lesson unit.
  */
 
+import { SOLAR_ABUNDANCES } from './solar-abundances.js';
+
 export const STORAGE_KEY = 'elements_compounds_unit_v2';
 
 export const LESSONS = [
@@ -41,7 +43,7 @@ export const LESSONS = [
     summary:
       'Trace elements from the Big Bang to stars and supernovae, decode cosmic abundance patterns, and use the binding energy curve.',
     successCriteria: [
-      'Trace the cosmic origins of elements (Big Bang, stellar fusion, supernovae/neutron star mergers).',
+      'Explain how nuclei form in the early universe, inside stars and during stellar events.',
       'Explain why lighter elements and even-atomic-number elements are much more abundant in the universe.',
       'Use the nuclear binding energy curve to explain why both stellar fusion and nuclear fission release energy.',
     ],
@@ -3756,6 +3758,8 @@ export function initRubricExplain(container, lessonId, totalActivities) {
    Stage 3 Initializers (Lesson 3 & Lesson 4)
    ========================================================================== */
 
+const slideAdvanceHandlers = new WeakMap();
+
 export function initCosmicTimeline(container, lessonId, totalActivities) {
   const activityId = container.dataset.activityId;
   const tabBtns = Array.from(container.querySelectorAll('[data-cosmic-stage]'));
@@ -3799,6 +3803,50 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
     </g>`;
   }
 
+  function earlyUniverse(expanded) {
+    const spacing = expanded ? 83 : 37;
+    const particles = Array.from({ length: 15 }, (_, i) => {
+      const cx = 240 + ((i % 5) - 2) * spacing + (i % 3 - 1) * 7;
+      const cy = 76 + (Math.floor(i / 5) - 1) * (expanded ? 32 : 19);
+      const proton = i % 3 !== 1;
+      return `<circle cx="${cx}" cy="${cy}" r="7.5" fill="${proton ? '#DC2626' : '#64748B'}" stroke="white" />
+        ${proton ? `<text x="${cx}" y="${cy + 4}" class="cosmic-proton-mark">+</text>` : ''}`;
+    }).join('');
+    return `<g class="cosmic-svg-label">
+      <rect x="${expanded ? 29 : 135}" y="${expanded ? 24 : 40}" width="${expanded ? 422 : 210}" height="${expanded ? 104 : 72}" rx="10" fill="#1e293b" stroke="#94a3b8" stroke-dasharray="4 4" />
+      ${particles}
+      <text x="240" y="152">${expanded ? 'Expanded and cooler' : 'Hot and dense'}</text>
+      <text class="cosmic-svg-detail" x="240" y="174">A patch of the early universe</text>
+    </g>`;
+  }
+
+  function stellarCore(ironRich = false, collapsing = false) {
+    const radius = collapsing ? 17 : 31;
+    const arrows = collapsing
+      ? '<path d="M155 71h50m120 0h-50" stroke="#e2e8f0" stroke-width="2" /><text x="204" y="77">›</text><text x="276" y="77">‹</text>'
+      : '';
+    return `<g class="cosmic-svg-label">
+      <circle cx="240" cy="71" r="58" fill="#7c2d12" stroke="#f59e0b" />
+      <circle cx="240" cy="71" r="45" fill="#b45309" />
+      <circle cx="240" cy="71" r="${radius}" fill="${ironRich ? '#475569' : '#fde68a'}" stroke="#f8fafc" />
+      <text x="240" y="77" fill="${ironRich ? '#f8fafc' : '#1e293b'}">${ironRich ? 'Fe' : 'Core'}</text>
+      ${arrows}
+      <text x="240" y="151">${collapsing ? 'Gravity pulls the core inward' : ironRich ? 'Iron-rich core in a massive star' : 'Fusion takes place in the hot core'}</text>
+    </g>`;
+  }
+
+  function supernovaShock() {
+    const ejecta = [[125, 60, 'O'], [151, 109, 'Si'], [344, 53, 'C'], [355, 110, 'O']];
+    return `<g class="cosmic-svg-label">
+      <g class="cosmic-shock-ring"><ellipse cx="240" cy="75" rx="121" ry="55" fill="none" stroke="#fbbf24" stroke-width="3" />
+      <ellipse cx="240" cy="75" rx="83" ry="39" fill="none" stroke="#f97316" stroke-dasharray="5 5" /></g>
+      <circle cx="240" cy="75" r="12" fill="#fef3c7" />
+      ${ejecta.map(([x, y, el]) => `<text x="${x}" y="${y}">${el}</text>`).join('')}
+      <text x="240" y="150">Shock wave ejects the outer layers</text>
+      <text class="cosmic-svg-detail" x="240" y="173">Elements spread into surrounding space</text>
+    </g>`;
+  }
+
   const helium = [2, 2, 'Helium-4', '2 protons'];
   const carbon = [6, 6, 'Carbon-12', '6 protons'];
   const oxygen = [8, 8, 'Oxygen-16', '8 protons'];
@@ -3811,6 +3859,21 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
       title: 'The first nuclei',
       steps: [
         {
+          name: 'A hot, dense early universe',
+          explanation: 'In the first moments, the universe was hot and dense. As space expanded, the particles spread out and the temperature fell. The model shows one patch of space at two times.',
+          button: 'Watch the universe expand',
+          imageLabel: 'A model of a hot, dense patch of the early universe containing free protons and neutrons.',
+          graphic: earlyUniverse(false),
+        },
+        {
+          name: 'Expansion cools the universe',
+          explanation: 'At first, energetic collisions broke light nuclei apart. As the universe cooled, protons and neutrons could join and stay together. That opened a short window for making light nuclei.',
+          button: 'Identify the light nuclei',
+          imageLabel: 'The same patch of space has expanded. Protons and neutrons are farther apart.',
+          graphic: earlyUniverse(true),
+        },
+        {
+          explanation: 'Some protons and neutrons combined in a series of reactions. Many protons stayed on their own.',
           question: 'Think back to the atom builder. Which particle determines the element? Name the elements with one and two protons.',
           button: 'Reveal the elements and their mass shares',
           imageLabel: 'Two mystery nuclei. The first contains one proton. The second contains two protons and two neutrons.',
@@ -3820,7 +3883,7 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
           </g>`,
         },
         {
-          explanation: 'One proton identifies hydrogen. Two identify helium. After the first few minutes, the early universe contained about 75% hydrogen and 25% helium by mass, with traces of lithium. Electrons joined nuclei to form atoms much later.',
+          explanation: 'One proton identifies hydrogen. Two identify helium. After a few minutes the universe had expanded and cooled enough for most of these reactions to stop. Ordinary matter was about 75% hydrogen and 25% helium by mass, with traces of lithium. Electrons joined nuclei to form atoms much later.',
           imageLabel: 'Early universe by mass. Hydrogen about 75 percent, helium about 25 percent. Trace lithium is too small to show.',
           graphic: `<g class="cosmic-svg-label">
             <text x="240" y="46">Early universe · Share by mass</text>
@@ -3834,10 +3897,31 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
       ],
     },
     stars: {
-      badge: 'In helium-burning stars',
+      badge: 'Inside stars',
       title: 'Fusion builds new elements',
       steps: [
         {
+          name: 'Gravity heats the stellar core',
+          explanation: 'Gravity pulls gas inward, compressing and heating the core. The nuclei there move fast enough for some to get close and fuse despite the repulsion between their positive charges.',
+          button: 'Show hydrogen fusion',
+          imageLabel: 'A star in cross-section, with fusion taking place at its hot centre.',
+          graphic: stellarCore(),
+        },
+        {
+          name: 'Hydrogen fusion powers a star',
+          explanation: 'A chain of reactions turns four hydrogen nuclei into one helium nucleus and releases energy. Two of the starting protons become neutrons. This energy helps a star shine.',
+          button: 'Model helium fusion',
+          imageLabel: 'Four hydrogen nuclei become one helium-4 nucleus. The diagram represents the net result of several reactions.',
+          graphic: `<g class="cosmic-svg-label">
+            ${[57, 105, 153, 201].map((cx) => `<circle cx="${cx}" cy="74" r="8" fill="#dc2626" stroke="white" /><text x="${cx}" y="78" class="cosmic-proton-mark">+</text>`).join('')}
+            <text x="129" y="125">4 hydrogen nuclei</text>
+            <text x="129" y="145" class="cosmic-svg-detail">Net result of several reactions</text>
+            <text x="317" y="80" font-size="24">→</text>
+            ${nucleus(414, 74, ...helium, 'cosmic-fusion-product')}
+          </g>`,
+        },
+        {
+          explanation: 'As some stars evolve, their interiors become hot enough for helium nuclei to fuse.',
           question: 'Each helium nucleus has two protons. If three helium nuclei end up in one nucleus, how many protons will it have? Which element is that?',
           button: 'Fuse the three helium nuclei',
           imageLabel: 'Three helium-4 nuclei, each with two protons and two neutrons. Predict the product.',
@@ -3858,22 +3942,44 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
         {
           explanation: '6 + 2 = 8 protons. The product is oxygen-16. Adding two protons to an even number gives another even number. This helps explain why even atomic numbers often form peaks in the abundance chart.',
           imageLabel: 'Carbon-12 plus helium-4 makes oxygen-16, with eight protons and eight neutrons.',
+          button: 'Look inside a massive star',
           graphic: reaction(carbonAndHelium, oxygen, true),
+        },
+        {
+          name: 'An iron-rich core forms',
+          explanation: 'Very massive stars reach higher core temperatures and build iron-group nuclei. Fusing nuclei like iron no longer supplies the energy the star needs. As the iron-rich core grows, it can become unstable.',
+          imageLabel: 'A cross-section of an evolved massive star with an iron-rich core.',
+          graphic: stellarCore(true),
         },
       ],
     },
     supernova: {
-      badge: 'In ageing stars and stellar events',
+      badge: 'Supernovae and other stellar settings',
       title: 'Nuclei can capture neutrons',
       steps: [
         {
+          name: 'The core of a massive star collapses',
+          explanation: 'When the iron-rich core can no longer support itself, gravity crushes it inward. The collapse can launch a shock wave that moves out through the star.',
+          button: 'Follow the shock wave',
+          imageLabel: 'Arrows point inward towards the collapsing iron-rich core.',
+          graphic: stellarCore(true, true),
+        },
+        {
+          name: 'A supernova spreads the elements',
+          explanation: 'The shock heats and ejects the outer layers. The explosion spreads elements the star already made, such as oxygen and silicon. Some new nuclei form in the hot shocked material.',
+          button: 'Zoom in on neutron capture',
+          imageLabel: 'An expanding shock wave carries carbon, oxygen and silicon out into space.',
+          graphic: supernovaShock(),
+        },
+        {
+          explanation: 'Neutron capture is another way to build heavier nuclei. A free neutron can join a nucleus without being repelled by its protons.',
           question: 'If this carbon nucleus captures one neutron, will its element change straight away? Use the proton-count rule to explain.',
           button: 'Add one neutron',
           imageLabel: 'Carbon-12, with six protons and six neutrons, and one free neutron. Predict the product.',
           graphic: reaction(capture, null, false),
         },
         {
-          explanation: 'The nucleus still has six protons, so it is still carbon. It now has seven neutrons. In other cases, a nucleus that captures a neutron can later decay and change its proton count. Neutron capture can build heavier nuclei slowly in ageing stars or rapidly in events such as neutron-star mergers.',
+          explanation: 'The nucleus still has six protons, so it is still carbon. It now has seven neutrons. In some other nuclei, a neutron later changes into a proton through radioactive decay. That raises the atomic number and makes a different element. Neutron capture can build heavier nuclei slowly in ageing stars or rapidly in events such as neutron-star mergers.',
           imageLabel: 'Carbon-12 captures a neutron and becomes carbon-13, with six protons and seven neutrons.',
           graphic: reaction(capture, [6, 7, 'Carbon-13', '6 protons · 7 neutrons'], false),
         },
@@ -3884,13 +3990,13 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
   const saved = getLessonState(lessonId).activities?.[activityId] || {};
   const stageIds = Object.keys(stages);
   const steps = Object.fromEntries(stageIds.map((id) => {
-    const savedStep = saved.steps?.[id];
+    const savedStep = saved.sequenceVersion === 2 ? saved.steps?.[id] : 0;
     return [id, Number.isInteger(savedStep) && savedStep >= 0 && savedStep < stages[id].steps.length ? savedStep : 0];
   }));
   const completedStages = new Set(Array.isArray(saved.completedStages)
     ? saved.completedStages.filter((id) => stageIds.includes(id))
     : saved.completed ? stageIds : []);
-  let currentStage = stageIds.includes(saved.currentStage) ? saved.currentStage : 'big-bang';
+  let currentStage = saved.sequenceVersion === 2 && stageIds.includes(saved.currentStage) ? saved.currentStage : stageIds[0];
 
   function render() {
     const stage = stages[currentStage];
@@ -3902,14 +4008,18 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
     });
 
     badge.textContent = stage.badge;
-    title.textContent = stage.title;
+    title.textContent = step.name || stage.title;
     svg.setAttribute('aria-label', step.imageLabel);
     svg.innerHTML = step.graphic;
     explanation.textContent = step.explanation || '';
     explanation.hidden = !step.explanation;
     question.textContent = step.question || '';
     question.hidden = !step.question;
-    reveal.textContent = step.button || 'Replay this stage';
+    const nextStage = stageIds[stageIds.indexOf(currentStage) + 1];
+    const nextTab = tabBtns.find((btn) => btn.dataset.cosmicStage === nextStage);
+    reveal.textContent = steps[currentStage] < stage.steps.length - 1
+      ? step.button
+      : nextTab ? `Next stage · ${nextTab.querySelector('.cosmic-tab-title').textContent}` : 'Replay timeline';
     progressBadge.textContent = `Completed: ${completedStages.size} / ${stageIds.length} stages`;
   }
 
@@ -3918,6 +4028,7 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
       type: 'cosmic-timeline',
       title: titleText,
       currentStage,
+      sequenceVersion: 2,
       steps,
       completedStages: Array.from(completedStages),
       answerSummary: `${completedStages.size}/${stageIds.length} stages completed`,
@@ -3933,10 +4044,27 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
     });
   });
 
-  reveal.addEventListener('click', () => {
+  function advance() {
     const lastStep = stages[currentStage].steps.length - 1;
-    steps[currentStage] = steps[currentStage] === lastStep ? 0 : steps[currentStage] + 1;
-    if (steps[currentStage] === lastStep) completedStages.add(currentStage);
+    if (steps[currentStage] < lastStep) {
+      steps[currentStage] += 1;
+      if (steps[currentStage] === lastStep) completedStages.add(currentStage);
+    } else {
+      const nextStage = stageIds[stageIds.indexOf(currentStage) + 1];
+      if (!nextStage) return false;
+      currentStage = nextStage;
+      steps[currentStage] = 0;
+    }
+    render();
+    persist();
+    return true;
+  }
+
+  slideAdvanceHandlers.set(container, advance);
+  reveal.addEventListener('click', () => {
+    if (advance()) return;
+    stageIds.forEach((id) => { steps[id] = 0; });
+    currentStage = stageIds[0];
     render();
     persist();
   });
@@ -3946,242 +4074,117 @@ export function initCosmicTimeline(container, lessonId, totalActivities) {
 
 export function initAbundanceChart(container, lessonId, totalActivities) {
   const activityId = container.dataset.activityId;
-  const svgEl = container.querySelector('#abundance-svg');
-  const reveal = container.querySelector('[data-abundance-reveal]');
-  const prompt = container.querySelector('[data-abundance-prompt]');
-  const frame = container.querySelector('.abundance-chart-frame');
-  const inspectorRow = container.querySelector('.abundance-inspector-row');
-  const check = container.querySelector('.abundance-check-box');
-  const oddoToggle = container.querySelector('[data-abundance-oddo]');
-  const inspectorEl = container.querySelector('[data-abundance-inspector]');
-  const checkBtns = Array.from(container.querySelectorAll('[data-abundance-choice]'));
-  const checkFeedback = container.querySelector('[data-abundance-feedback]');
-  const titleText =
-    container.querySelector('.activity-title')?.textContent?.trim() || 'Cosmic Abundance Chart';
-
-  const first30 = ELEMENTS.filter((e) => e.number >= 1 && e.number <= 30 && e.cosmicAbundance != null);
+  const svg = container.querySelector('#abundance-svg');
+  const modeButtons = Array.from(container.querySelectorAll('[data-abundance-mode]'));
+  const summary = container.querySelector('[data-abundance-summary]');
+  const select = container.querySelector('#abundance-element');
+  const inspector = container.querySelector('[data-abundance-inspector]');
+  const title = container.querySelector('.activity-title').textContent.trim();
   const saved = getLessonState(lessonId).activities?.[activityId] || {};
-  const views = [
-    {
-      prompt: 'Predict which two elements will have the tallest bars.',
-      button: 'Reveal the two tallest bars',
-      elements: [],
-    },
-    {
-      prompt: 'Hydrogen and helium have the tallest bars. Now predict which is most abundant: nitrogen (7), oxygen (8) or fluorine (9).',
-      button: 'Compare nitrogen, oxygen and fluorine',
-      elements: [1, 2],
-    },
-    {
-      prompt: 'Oxygen (8) is higher than both neighbours. How does adding a helium nucleus to carbon help explain that peak?',
-      button: 'Show all 30 elements',
-      elements: [7, 8, 9],
-    },
-    {
-      prompt: 'Inspect more neighbours. Then highlight even and odd atomic numbers to see how often the pattern repeats.',
-      button: 'Replay predictions',
-      elements: first30.map((el) => el.number),
-    },
-  ];
-  const fullView = views.length - 1;
-  let view = Number.isInteger(saved.view) && views[saved.view] ? saved.view : saved.completed ? fullView : 0;
-  let highlightOddo = Boolean(saved.highlightOddo);
-  let selectedZ = Number.isInteger(saved.selectedZ) ? saved.selectedZ : null;
-  let answerChoice = saved.answerChoice || '';
+  const elementByNumber = new Map(SOLAR_ABUNDANCES.map((element) => [element[0], element]));
+  const numberFormat = new Intl.NumberFormat('en-AU', { maximumSignificantDigits: 6 });
+  const accents = { light: '#a24c0a', even: '#006a9c', odd: '#b63c60', neutral: '#67768a' };
+  const left = 46;
+  const right = 804;
+  const top = 18;
+  const baseline = 251;
+  const step = (right - left) / SOLAR_ABUNDANCES.length;
+  const x = (z) => left + (z - 0.5) * step;
+  const y = (exp) => baseline - ((exp + 3) / 14) * (baseline - top);
+  const landmarks = [1, 2, 8, 14, 26, 38, 47, 56, 70, 79, 82, 92];
+  const parityExample = [7, 8, 9];
+  let mode = 'light';
+  let seenOddo = Boolean(saved.completed);
 
-  const originNotes = {
-    1: 'Most hydrogen dates to the early universe.',
-    2: 'Most helium dates to the early universe. Stars also make helium.',
-    3: 'Some lithium dates to the early universe. Later processes also produce it.',
-    6: 'Helium fusion inside stars makes carbon-12.',
-    8: 'Stars can make oxygen-16 by fusing carbon-12 with helium-4.',
-  };
+  select.innerHTML = SOLAR_ABUNDANCES.map(([z, symbol, name]) =>
+    `<option value="${z}">${z} · ${name} (${symbol})</option>`
+  ).join('');
 
-  function renderChart() {
-    const elements = first30.filter((el) => views[view].elements.includes(el.number));
-    if (elements.length === 0) {
-      svgEl.replaceChildren();
-      return;
+  const ironBoundary = x(26) + step / 2;
+  const grid = [[-2, '10⁻²'], [0, '1'], [2, '10²'], [4, '10⁴'], [6, '10⁶'], [8, '10⁸'], [10, '10¹⁰']]
+    .map(([exp, label]) => `<line x1="${left}" y1="${y(exp)}" x2="${right}" y2="${y(exp)}" class="abundance-gridline" />
+      <text x="${left - 7}" y="${y(exp) + 4}" text-anchor="end" class="abundance-axis-text">${label}</text>`).join('');
+  const points = SOLAR_ABUNDANCES.map(([z, , , abundance]) => {
+    if (abundance === null) return '';
+    const height = y(Math.log10(abundance));
+    return `<g data-ab-z="${z}" class="abundance-point">
+      <rect class="abundance-hit-area" x="${x(z) - step / 2}" y="${top}" width="${step}" height="${baseline - top}" fill="transparent" />
+      <line x1="${x(z)}" y1="${height}" x2="${x(z)}" y2="${baseline}" class="abundance-stem" />
+      <circle cx="${x(z)}" cy="${height}" r="2.7" class="abundance-dot" />
+    </g>`;
+  }).join('');
+  const labels = landmarks.map((z) => {
+    const [, symbol] = elementByNumber.get(z);
+    if (z === 1 || z === 2) {
+      return `<text x="${left + (z === 1 ? 0 : 14)}" y="${baseline + 19}" class="abundance-axis-text">${symbol}</text>`;
     }
-    const width = 760;
-    const height = 225;
-    const padL = 48;
-    const padR = 14;
-    const padT = 18;
-    const padB = 34;
-    const plotW = width - padL - padR;
-    const plotH = height - padT - padB;
-    const minLog = -1; // Be = 0.60 -> log10 = -0.22
-    const maxLog = 11; // H = 2.43e10 -> log10 = 10.39
-    const barStep = plotW / elements.length;
-    const barW = Math.min(96, barStep - 4);
+    return `<text x="${x(z)}" y="${baseline + 19}" text-anchor="middle" class="abundance-axis-text">${symbol}</text>`;
+  }).join('');
 
-    const gridLines = [0, 3, 6, 9].map((exp) => {
-      const y = padT + plotH - ((exp - minLog) / (maxLog - minLog)) * plotH;
-      const label = exp === 0 ? '1' : `10^${exp}`;
-      return `
-        <line x1="${padL}" y1="${y.toFixed(1)}" x2="${width - padR}" y2="${y.toFixed(1)}" stroke="#E2E8F0" stroke-width="1" />
-        <text x="${padL - 6}" y="${(y + 3).toFixed(1)}" text-anchor="end" fill="#64748B" font-size="9.5" font-family="IBM Plex Mono, monospace">${label}</text>
-      `;
-    });
+  svg.innerHTML = `
+    <rect x="${ironBoundary}" y="${top}" width="${right - ironBoundary}" height="${baseline - top}" fill="#edf2f8" />
+    ${grid}
+    <path d="M ${left} ${top} V ${baseline} H ${right}" fill="none" class="abundance-axis-line" />
+    <line x1="${ironBoundary}" y1="${top}" x2="${ironBoundary}" y2="${baseline}" class="abundance-iron-line" />
+    <text x="${ironBoundary + 9}" y="${top + 17}" class="abundance-region-label">Beyond iron (Z &gt; 26)</text>
+    ${points}
+    ${labels}
+    <text x="${(left + right) / 2}" y="297" text-anchor="middle" class="abundance-region-label">Atomic number (proton count) →</text>`;
+  const marks = Array.from(svg.querySelectorAll('[data-ab-z]'));
 
-    const bars = elements.map((el, idx) => {
-      const logVal = Math.log10(el.cosmicAbundance);
-      const frac = Math.max(0.03, (logVal - minLog) / (maxLog - minLog));
-      const barH = frac * plotH;
-      const x = padL + idx * barStep + (barStep - barW) / 2;
-      const y = padT + plotH - barH;
-      const isEven = el.number % 2 === 0;
-
-      let fill = '#64748B';
-      if (view === fullView && highlightOddo) {
-        fill = isEven ? '#0284C7' : '#F25C5E';
-      } else if (el.number <= 2) {
-        fill = '#D97706';
-      }
-
-      const isSel = el.number === selectedZ;
-      return `
-        <g class="abundance-bar-group ${isSel ? 'is-selected' : ''}" data-ab-z="${el.number}" tabindex="0" role="button" aria-pressed="${isSel}" aria-label="${escapeHtml(el.name)} Z=${el.number}">
-          <rect class="abundance-bar-rect" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barW.toFixed(1)}" height="${barH.toFixed(1)}" rx="2.5" fill="${fill}" />
-          <text x="${(x + barW / 2).toFixed(1)}" y="${height - 16}" text-anchor="middle" fill="#0F172A" font-size="${view === fullView ? 9 : 13}" font-weight="${isSel ? '800' : '600'}">${view === fullView ? el.symbol : el.name}</text>
-          <text x="${(x + barW / 2).toFixed(1)}" y="${height - 5}" text-anchor="middle" fill="#64748B" font-size="8" font-family="IBM Plex Mono, monospace">${el.number}</text>
-        </g>
-      `;
-    });
-
-    svgEl.innerHTML = `
-      ${gridLines.join('')}
-      <line x1="${padL}" y1="${padT + plotH}" x2="${width - padR}" y2="${padT + plotH}" stroke="#94A3B8" stroke-width="1.2" />
-      ${bars.join('')}
-    `;
-
-    svgEl.querySelectorAll('[data-ab-z]').forEach((group) => {
-      const choose = () => {
-        selectedZ = Number(group.dataset.abZ);
-        svgEl.querySelectorAll('[data-ab-z]').forEach((bar) => {
-          const selected = bar === group;
-          bar.classList.toggle('is-selected', selected);
-          bar.setAttribute('aria-pressed', String(selected));
-        });
-        renderInspector();
-        persist();
-      };
-      group.addEventListener('click', choose);
-      group.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          e.stopPropagation();
-          choose();
-        }
-      });
-    });
-  }
-
-  function renderInspector() {
-    if (!inspectorEl) return;
-    const el = first30.find((item) => item.number === selectedZ && views[view].elements.includes(item.number));
-    if (!el) {
-      inspectorEl.textContent = 'Select a bar to inspect its abundance.';
-      return;
-    }
-    const parity = el.number % 2 === 0 ? 'Even atomic number' : 'Odd atomic number';
-    const formatted =
-      el.cosmicAbundance >= 1e6
-        ? `${(el.cosmicAbundance / 1e6).toFixed(2)} million`
-        : el.cosmicAbundance.toLocaleString();
-
-    inspectorEl.innerHTML = `
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
-        <strong style="font-size:1.05rem; color:var(--text-heading);">${escapeHtml(el.name)} (${el.symbol}) · Z = ${el.number}</strong>
-        <span class="tabular-nums" style="font-size:0.8125rem; color:var(--accent-accessible); font-weight:700;">${parity}</span>
-      </div>
-      <div style="font-size:0.875rem; color:var(--text-body);">
-        Relative abundance: <strong class="tabular-nums">${formatted}</strong> (per 1,000,000 Si atoms)
-      </div>
-      ${originNotes[el.number] ? `<p class="abundance-origin-note">${escapeHtml(originNotes[el.number])}</p>` : ''}
-    `;
-  }
-
-  function applyCheckUI() {
-    const isCorrect = answerChoice === 'even';
-    checkBtns.forEach((btn) => {
-      const val = btn.dataset.abundanceChoice;
-      const active = val === answerChoice;
-      btn.classList.toggle('is-correct', active && isCorrect);
-      btn.classList.toggle('is-incorrect', active && !isCorrect);
-      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
-    if (checkFeedback && answerChoice) {
-      checkFeedback.classList.add('is-visible');
-      checkFeedback.classList.toggle('is-success', isCorrect);
-      checkFeedback.classList.toggle('is-error', !isCorrect);
-      checkFeedback.textContent = isCorrect
-        ? 'Correct. Even atomic numbers often form peaks. Adding helium-4 in some fusion reactions increases the proton count by two and helps explain the pattern.'
-        : 'Compare carbon (6), oxygen (8) and iron (26) with the bars on either side.';
-    }
+  function showElement(z) {
+    const [, symbol, name, abundance] = elementByNumber.get(z);
+    select.value = String(z);
+    marks.forEach((mark) => mark.classList.toggle('is-selected', Number(mark.dataset.abZ) === z));
+    inspector.textContent = abundance === null
+      ? `${name} (${symbol}) has no recommended value in this dataset.`
+      : `${numberFormat.format(abundance)} atoms per million silicon atoms. ${z % 2 === 0 ? 'Even' : 'Odd'} atomic number.`;
   }
 
   function persist() {
-    if (!lessonId || !activityId) return;
-    const completed = answerChoice === 'even' && highlightOddo;
-    setActivityResult(
-      lessonId,
-      activityId,
-      {
-        type: 'abundance-chart',
-        title: titleText,
-        view,
-        highlightOddo,
-        selectedZ,
-        answerChoice,
-        answerSummary: completed ? 'Oddo–Harkins pattern verified' : views[view].button,
-        completed,
-      },
-      totalActivities
-    );
+    setActivityResult(lessonId, activityId, {
+      type: 'abundance-chart',
+      title,
+      answerSummary: seenOddo ? 'Compared hydrogen and helium dominance with the Oddo–Harkins pattern' : 'Viewed hydrogen and helium dominance',
+      completed: seenOddo,
+    }, totalActivities);
   }
 
-  function renderView() {
-    const showFull = view === fullView;
-    reveal.textContent = views[view].button;
-    prompt.textContent = views[view].prompt;
-    frame.hidden = view === 0;
-    inspectorRow.hidden = view === 0;
-    check.hidden = !showFull;
-    oddoToggle.hidden = !showFull;
-    oddoToggle.setAttribute('aria-pressed', String(highlightOddo));
-    oddoToggle.textContent = highlightOddo
-      ? 'Showing Even (Blue) vs Odd (Coral)'
-      : 'Highlight Even vs. Odd Z (Oddo–Harkins)';
-    renderChart();
-    renderInspector();
-    applyCheckUI();
-  }
-
-  reveal.addEventListener('click', () => {
-    view = (view + 1) % views.length;
-    selectedZ = null;
-    renderView();
-    persist();
-  });
-
-  oddoToggle.addEventListener('click', () => {
-    highlightOddo = !highlightOddo;
-    renderView();
-    persist();
-  });
-
-  checkBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      answerChoice = btn.dataset.abundanceChoice;
-      highlightOddo = true;
-      renderView();
-      persist();
+  function showMode(nextMode, save = true) {
+    mode = nextMode;
+    const light = mode === 'light';
+    modeButtons.forEach((button) => {
+      const active = button.dataset.abundanceMode === mode;
+      button.setAttribute('aria-pressed', String(active));
+      button.classList.toggle('btn-primary', active);
+      button.classList.toggle('btn-secondary', !active);
     });
+    summary.innerHTML = light
+      ? '<strong>Hydrogen and helium dominate</strong><p>These two elements were already abundant before the first stars formed. Compare their orange marks with oxygen and iron.</p>'
+      : '<strong>Oddo–Harkins pattern</strong><p><span class="abundance-even">Even Z</span> often forms peaks above <span class="abundance-odd">odd Z</span> neighbours. Compare N (7), O (8) and F (9). Adding helium to carbon raises its proton count by two, from 6 to 8.</p>';
+    marks.forEach((mark) => {
+      const z = Number(mark.dataset.abZ);
+      mark.style.color = light ? (z <= 2 ? accents.light : accents.neutral) : (z % 2 === 0 ? accents.even : accents.odd);
+      mark.classList.toggle('is-highlighted', light ? z <= 2 : parityExample.includes(z));
+    });
+    showElement(light ? 1 : 8);
+    if (!light) seenOddo = true;
+    if (save) persist();
+  }
+
+  modeButtons.forEach((button) => button.addEventListener('click', () => showMode(button.dataset.abundanceMode)));
+  svg.addEventListener('click', (event) => {
+    const mark = event.target.closest('[data-ab-z]');
+    if (mark) showElement(Number(mark.dataset.abZ));
+  });
+  select.addEventListener('change', () => showElement(Number(select.value)));
+  slideAdvanceHandlers.set(container, () => {
+    if (mode === 'oddo') return false;
+    showMode('oddo');
+    return true;
   });
 
-  renderView();
+  showMode(mode, false);
 }
 
 export function initBindingEnergyCurve(container, lessonId, totalActivities) {
@@ -5098,6 +5101,7 @@ export function initSlideshow(lessonId) {
   }
 
   function revealNextOnSlide(idx = currentIndex) {
+    if (slideAdvanceHandlers.get(slides[idx])?.()) return true;
     const items = slideStepControls[idx];
     const set = revealedSets[idx];
     for (let i = 0; i < items.length; i += 1) {

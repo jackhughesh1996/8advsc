@@ -104,7 +104,7 @@
             <div>
               <h2 class="activity-title slide-title-md" id="cosmic-timeline-heading">Where Do Elements Come From?</h2>
               <p class="activity-prompt">
-                Use the proton-count rule from Lesson 2 to predict what each process makes.
+                Follow how nuclei form, fuse and capture neutrons. Use the proton-count rule from Lesson 2 to identify the elements.
               </p>
             </div>
             <span class="tabular-nums" data-cosmic-visited style="font-size: 0.8125rem; color: var(--text-muted);">
@@ -123,7 +123,7 @@
             </button>
             <button type="button" class="cosmic-tab-btn" data-cosmic-stage="supernova" aria-pressed="false">
               <span class="cosmic-tab-step">Stage 03</span>
-              <span class="cosmic-tab-title">Neutron capture</span>
+              <span class="cosmic-tab-title">Supernovae &amp; neutron capture</span>
             </button>
           </div>
 
@@ -152,15 +152,14 @@
           </div>
 
           <div class="cosmic-handoff">
-            <strong>Predict before looking at Slide 03</strong>
-            <p>Which two elements will have the tallest bars? Which will be most abundant: nitrogen (7), oxygen (8) or fluorine (9)?</p>
+            <p><strong>Next on Slide 03</strong> See why hydrogen and helium dominate, where even atomic numbers form peaks, and how abundance changes beyond iron.</p>
           </div>
         </section>
 
-        <!-- Slide 3: Interactive Cosmic Abundance Chart (Z = 1 to 30) -->
+        <!-- Slide 3: Interactive Solar System Abundance Chart -->
         <section
           class="slide activity-card"
-          data-slide-title="Cosmic Abundance Chart (Z = 1–30)"
+          data-slide-title="Solar System Element Abundances"
           data-activity="abundance-chart"
           data-activity-id="l3-abundance-chart"
           aria-labelledby="abundance-heading"
@@ -170,48 +169,43 @@
           </div>
           <div class="abundance-toolbar">
             <div>
-              <h2 class="activity-title slide-title-md" id="abundance-heading">Cosmic Abundance of Elements (Z = 1–30)</h2>
+              <h2 class="activity-title slide-title-md" id="abundance-heading">Solar System Element Abundances</h2>
               <p class="activity-prompt">
-                The chart counts atoms per million silicon atoms on a log scale. Slide 02 showed the early universe’s composition by mass.
+                Atoms per million silicon atoms. Each grid step is a 100-fold change.
+                Slide 02 showed early-universe composition by mass.
               </p>
             </div>
-            <div class="cosmic-controls">
-              <button type="button" class="btn btn-primary btn-sm" data-abundance-reveal></button>
-              <button type="button" class="btn btn-secondary btn-sm" data-abundance-oddo aria-pressed="false" hidden>
-                Highlight Even vs. Odd Z (Oddo–Harkins)
-              </button>
+            <div class="cosmic-controls" role="group" aria-label="Chart highlight">
+              <button type="button" class="btn btn-primary btn-sm" data-abundance-mode="light" aria-pressed="true">Hydrogen + helium</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-abundance-mode="oddo" aria-pressed="false">Oddo–Harkins</button>
             </div>
           </div>
 
-          <p class="cosmic-handoff" data-abundance-prompt aria-live="polite"></p>
-
           <div class="abundance-layout">
-            <div class="abundance-chart-frame" hidden>
+            <div class="abundance-chart-frame">
               <svg
                 id="abundance-svg"
                 class="abundance-svg"
-                viewBox="0 0 760 225"
-                role="group"
-                aria-label="Logarithmic chart of cosmic abundance in atoms per million silicon atoms"
+                viewBox="0 0 820 305"
+                role="img"
+                aria-label="Logarithmic chart of abundances from hydrogen to uranium. Use Inspect an element to read individual values."
               ></svg>
             </div>
 
-            <div class="abundance-inspector-row" hidden>
-              <div class="abundance-detail-box" data-abundance-inspector aria-live="polite"></div>
-
-              <div class="abundance-check-box" hidden>
-                <strong style="font-size: 0.9rem; color: var(--text-heading);">Which elements often form peaks above their neighbours?</strong>
-                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                  <button type="button" class="mini-quiz-opt" data-abundance-choice="even" aria-pressed="false">
-                    Even atomic numbers
-                  </button>
-                  <button type="button" class="mini-quiz-opt" data-abundance-choice="odd" aria-pressed="false">
-                    Odd atomic numbers
-                  </button>
-                </div>
-                <div class="activity-feedback" data-abundance-feedback aria-live="polite"></div>
+            <div class="abundance-sidebar">
+              <div class="abundance-detail-box">
+                <div class="abundance-mode-summary" data-abundance-summary aria-live="polite"></div>
+              </div>
+              <div class="abundance-detail-box">
+                <label for="abundance-element"><strong>Inspect an element</strong></label>
+                <select id="abundance-element" class="abundance-select"></select>
+                <div data-abundance-inspector aria-live="polite"></div>
               </div>
             </div>
+          </div>
+          <div class="abundance-footer">
+            <p><strong>Beyond iron:</strong> Abundances generally fall as proton count rises, with local peaks such as lead (Pb).</p>
+            <p>Gaps mark elements without a recommended value. <a href="https://doi.org/10.1007/s11214-025-01146-w" target="_blank" rel="noopener">Lodders et al. (2025), Table 6</a></p>
           </div>
         </section>
 
