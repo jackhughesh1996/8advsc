@@ -3759,159 +3759,199 @@ export function initRubricExplain(container, lessonId, totalActivities) {
 export function initCosmicTimeline(container, lessonId, totalActivities) {
   const activityId = container.dataset.activityId;
   const tabBtns = Array.from(container.querySelectorAll('[data-cosmic-stage]'));
-  const svgEl = container.querySelector('#cosmic-timeline-svg');
-  const titleEl = container.querySelector('[data-cosmic-title]');
-  const badgeEl = container.querySelector('[data-cosmic-badge]');
-  const listEl = container.querySelector('[data-cosmic-bullets]');
-  const outputsEl = container.querySelector('[data-cosmic-outputs]');
+  const svg = container.querySelector('#cosmic-timeline-svg');
+  const badge = container.querySelector('[data-cosmic-badge]');
+  const title = container.querySelector('[data-cosmic-title]');
+  const explanation = container.querySelector('[data-cosmic-explanation]');
+  const question = container.querySelector('[data-cosmic-question]');
+  const reveal = container.querySelector('[data-cosmic-reveal]');
   const progressBadge = container.querySelector('[data-cosmic-visited]');
-  const titleText =
-    container.querySelector('.activity-title')?.textContent?.trim() || 'Cosmic Origins Timeline';
+  const titleText = container.querySelector('.activity-title').textContent.trim();
 
-  const STAGES = {
+  function nucleus(x, y, protons, neutrons, label, details, motion = '') {
+    const count = protons + neutrons;
+    const columns = Math.ceil(Math.sqrt(count));
+    const rows = Math.ceil(count / columns);
+    const dots = Array.from({ length: count }, (_, i) => {
+      const row = Math.floor(i / columns);
+      const rowLength = Math.min(columns, count - row * columns);
+      const cx = (i % columns - (rowLength - 1) / 2) * 15;
+      const cy = (row - (rows - 1) / 2) * 15;
+      const isProton = i < protons;
+      return `<circle cx="${cx}" cy="${cy}" r="7.5" fill="${isProton ? '#DC2626' : '#64748B'}" stroke="white" />
+        ${isProton ? `<text class="cosmic-proton-mark" x="${cx}" y="${cy + 4}">+</text>` : ''}`;
+    }).join('');
+    return `<g transform="translate(${x} ${y})">
+      <g class="${motion}">${dots}</g>
+      <text y="51">${escapeHtml(label)}</text>
+      <text class="cosmic-svg-detail" y="71">${escapeHtml(details)}</text>
+    </g>`;
+  }
+
+  function reaction(inputs, product, isFusion) {
+    const combining = product && isFusion ? 'cosmic-fusion-input' : '';
+    return `<g class="cosmic-svg-label">
+      ${inputs.map(([x, ...model]) => nucleus(x, 74, ...model, combining)).join('')}
+      <text x="317" y="80" font-size="24">→</text>
+      ${product
+        ? nucleus(414, 74, ...product, isFusion ? 'cosmic-fusion-product' : '')
+        : '<text x="414" y="85" font-size="32">?</text><text x="414" y="125">Product</text>'}
+    </g>`;
+  }
+
+  const helium = [2, 2, 'Helium-4', '2 protons'];
+  const carbon = [6, 6, 'Carbon-12', '6 protons'];
+  const oxygen = [8, 8, 'Oxygen-16', '8 protons'];
+  const threeHelium = [48, 142, 236].map((x) => [x, ...helium]);
+  const carbonAndHelium = [[72, ...carbon], [211, ...helium]];
+  const capture = [[72, ...carbon], [211, 0, 1, 'Neutron', '0 protons']];
+  const stages = {
     'big-bang': {
-      badge: 'First Few Minutes · ~13.8 Billion Years Ago',
-      title: '1. Big Bang Nucleosynthesis',
-      bullets: [
-        'As the early universe cooled enough for protons and neutrons to combine, only the lightest nuclei formed.',
-        'Created ~75% Hydrogen (H), ~25% Helium (He), and tiny traces of Lithium (Li).',
-        'Space expanded and cooled too fast to fuse anything heavier—every heavier atom came later inside stars.',
+      badge: 'First few minutes',
+      title: 'The first nuclei',
+      steps: [
+        {
+          question: 'Think back to the atom builder. Which particle determines the element? Name the elements with one and two protons.',
+          button: 'Reveal the elements and their mass shares',
+          imageLabel: 'Two mystery nuclei. The first contains one proton. The second contains two protons and two neutrons.',
+          graphic: `<g class="cosmic-svg-label">
+            ${nucleus(145, 74, 1, 0, 'Which element?', '1 proton')}
+            ${nucleus(335, 74, 2, 2, 'Which element?', '2 protons')}
+          </g>`,
+        },
+        {
+          explanation: 'One proton identifies hydrogen. Two identify helium. After the first few minutes, the early universe contained about 75% hydrogen and 25% helium by mass, with traces of lithium. Electrons joined nuclei to form atoms much later.',
+          imageLabel: 'Early universe by mass. Hydrogen about 75 percent, helium about 25 percent. Trace lithium is too small to show.',
+          graphic: `<g class="cosmic-svg-label">
+            <text x="240" y="46">Early universe · Share by mass</text>
+            <rect x="20" y="66" width="330" height="49" rx="4" fill="#0E7490" />
+            <rect x="350" y="66" width="110" height="49" rx="4" fill="#6D28D9" />
+            <text x="185" y="97">Hydrogen ≈ 75%</text>
+            <text x="405" y="88">Helium</text><text x="405" y="106">≈ 25%</text>
+            <text x="240" y="149" class="cosmic-svg-detail">Trace lithium is too small to show</text>
+          </g>`,
+        },
       ],
-      outputs: ['¹H (~75%)', '⁴He (~25%)', '⁷Li (trace)'],
-      svg: `
-        <rect x="0" y="0" width="420" height="240" rx="10" fill="#0F172A" />
-        <circle cx="210" cy="120" r="88" fill="#F59E0B" opacity="0.14" />
-        <circle cx="210" cy="120" r="56" fill="#F25C5E" opacity="0.22" />
-        <circle cx="210" cy="120" r="26" fill="#FEF3C7" opacity="0.88" />
-        <text x="210" y="124" text-anchor="middle" fill="#0F172A" font-size="11" font-weight="700">Early Plasma</text>
-        <g>
-          <circle cx="96" cy="64" r="14" fill="#38BDF8" stroke="#FFFFFF" stroke-width="1.8" />
-          <text x="96" y="68" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">¹H</text>
-          <circle cx="326" cy="70" r="17" fill="#F25C5E" stroke="#FFFFFF" stroke-width="1.8" />
-          <text x="326" y="74" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">⁴He</text>
-          <circle cx="92" cy="176" r="14" fill="#38BDF8" stroke="#FFFFFF" stroke-width="1.8" />
-          <text x="92" y="180" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">¹H</text>
-          <circle cx="328" cy="174" r="13" fill="#A78BFA" stroke="#FFFFFF" stroke-width="1.8" />
-          <text x="328" y="178" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="700">⁷Li</text>
-        </g>
-        <text x="210" y="220" text-anchor="middle" fill="#CBD5E1" font-size="11.5" font-weight="600">Rapid cooling locked in H (75%) + He (25%)</text>
-      `,
     },
     stars: {
-      badge: 'Millions–Billions of Years · Inside Stellar Cores',
-      title: '2. Stellar Nucleosynthesis (Fusion in Stars)',
-      bullets: [
-        'Crushing gravity and extreme heat (~15 million °C+) overcome proton–proton repulsion so light nuclei fuse.',
-        'Stars fuse Hydrogen → Helium, then Helium → Carbon → Oxygen → Neon → Silicon, all the way up to Iron (Fe, Z = 26).',
-        'Fusing light nuclei releases enormous energy—making stars shine for billions of years.',
+      badge: 'In helium-burning stars',
+      title: 'Fusion builds new elements',
+      steps: [
+        {
+          question: 'Each helium nucleus has two protons. If three helium nuclei end up in one nucleus, how many protons will it have? Which element is that?',
+          button: 'Fuse the three helium nuclei',
+          imageLabel: 'Three helium-4 nuclei, each with two protons and two neutrons. Predict the product.',
+          graphic: reaction(threeHelium, null, true),
+        },
+        {
+          explanation: '2 + 2 + 2 = 6 protons. The product is carbon-12. This model shows the starting nuclei and the final product.',
+          button: 'Prepare carbon and helium',
+          imageLabel: 'Three helium-4 nuclei form carbon-12, with six protons and six neutrons.',
+          graphic: reaction(threeHelium, carbon, true),
+        },
+        {
+          question: 'Carbon has six protons and helium has two. Predict the new element and whether its atomic number will be odd or even.',
+          button: 'Fuse carbon and helium',
+          imageLabel: 'Carbon-12 has six protons. Helium-4 has two protons. Predict the product.',
+          graphic: reaction(carbonAndHelium, null, true),
+        },
+        {
+          explanation: '6 + 2 = 8 protons. The product is oxygen-16. Adding two protons to an even number gives another even number. This helps explain why even atomic numbers often form peaks in the abundance chart.',
+          imageLabel: 'Carbon-12 plus helium-4 makes oxygen-16, with eight protons and eight neutrons.',
+          graphic: reaction(carbonAndHelium, oxygen, true),
+        },
       ],
-      outputs: ['He (2)', 'C (6)', 'O (8)', 'Si (14)', 'Fe (26)'],
-      svg: `
-        <rect x="0" y="0" width="420" height="240" rx="10" fill="#0F172A" />
-        <circle cx="150" cy="120" r="96" fill="#FDE68A" opacity="0.22" stroke="#F59E0B" stroke-width="1.5" />
-        <circle cx="150" cy="120" r="74" fill="#FBBF24" opacity="0.28" stroke="#F59E0B" stroke-width="1.2" />
-        <circle cx="150" cy="120" r="52" fill="#F25C5E" opacity="0.35" stroke="#FCA5A5" stroke-width="1.2" />
-        <circle cx="150" cy="120" r="28" fill="#64748B" stroke="#E2E8F0" stroke-width="2" />
-        <text x="150" y="124" text-anchor="middle" fill="#FFFFFF" font-size="11" font-weight="700">Fe Core</text>
-        <text x="150" y="82" text-anchor="middle" fill="#FEF3C7" font-size="10" font-weight="700">C / O / Si</text>
-        <text x="150" y="54" text-anchor="middle" fill="#FDE68A" font-size="10" font-weight="700">He shell</text>
-        <text x="150" y="34" text-anchor="middle" fill="#F8FAFC" font-size="10" font-weight="700">H outer</text>
-        <g fill="#E2E8F0" font-size="11.5" font-weight="600">
-          <text x="275" y="70">H → He (powers star)</text>
-          <text x="275" y="104">He → C → O</text>
-          <text x="275" y="138">C / O → Si → Fe</text>
-          <text x="275" y="176" fill="#FCA5A5">Fusion stops at Iron (Fe)</text>
-        </g>
-      `,
     },
     supernova: {
-      badge: 'Explosive Events · Supernovae & Neutron Star Mergers',
-      title: '3. Supernovae & Neutron Star Collisions',
-      bullets: [
-        'Fusing elements heavier than Iron absorbs energy instead of releasing it, so massive stars collapse and explode.',
-        'Supernovae and colliding neutron stars flood space with energy and neutrons, building every element heavier than Iron.',
-        'Heavy everyday and precious elements—like Copper, Silver, Gold, and Uranium—were forged in these cosmic blasts.',
+      badge: 'In ageing stars and stellar events',
+      title: 'Nuclei can capture neutrons',
+      steps: [
+        {
+          question: 'If this carbon nucleus captures one neutron, will its element change straight away? Use the proton-count rule to explain.',
+          button: 'Add one neutron',
+          imageLabel: 'Carbon-12, with six protons and six neutrons, and one free neutron. Predict the product.',
+          graphic: reaction(capture, null, false),
+        },
+        {
+          explanation: 'The nucleus still has six protons, so it is still carbon. It now has seven neutrons. In other cases, a nucleus that captures a neutron can later decay and change its proton count. Neutron capture can build heavier nuclei slowly in ageing stars or rapidly in events such as neutron-star mergers.',
+          imageLabel: 'Carbon-12 captures a neutron and becomes carbon-13, with six protons and seven neutrons.',
+          graphic: reaction(capture, [6, 7, 'Carbon-13', '6 protons · 7 neutrons'], false),
+        },
       ],
-      outputs: ['Cu (29)', 'Ag (47)', 'Au (79)', 'U (92)'],
-      svg: `
-        <rect x="0" y="0" width="420" height="240" rx="10" fill="#0F172A" />
-        <polygon points="210,22 234,88 302,66 254,116 322,148 248,154 274,218 210,170 146,218 172,154 98,148 166,116 118,66 186,88" fill="#F25C5E" opacity="0.35" stroke="#FCA5A5" stroke-width="1.8" />
-        <circle cx="210" cy="120" r="24" fill="#FFFFFF" />
-        <text x="210" y="124" text-anchor="middle" fill="#0F172A" font-size="10.5" font-weight="800">Blast</text>
-        <circle cx="78" cy="54" r="15" fill="#D97706" stroke="#FEF3C7" stroke-width="1.6" />
-        <text x="78" y="58" text-anchor="middle" fill="#FFFFFF" font-size="10.5" font-weight="700">Cu</text>
-        <circle cx="342" cy="54" r="15" fill="#94A3B8" stroke="#FFFFFF" stroke-width="1.6" />
-        <text x="342" y="58" text-anchor="middle" fill="#0F172A" font-size="10.5" font-weight="700">Ag</text>
-        <circle cx="80" cy="186" r="16" fill="#EAB308" stroke="#FFFFFF" stroke-width="1.6" />
-        <text x="80" y="190" text-anchor="middle" fill="#0F172A" font-size="11" font-weight="800">Au</text>
-        <circle cx="340" cy="186" r="16" fill="#10B981" stroke="#FFFFFF" stroke-width="1.6" />
-        <text x="340" y="190" text-anchor="middle" fill="#0F172A" font-size="11" font-weight="800">U</text>
-        <text x="210" y="226" text-anchor="middle" fill="#E2E8F0" font-size="11" font-weight="600">Seeds space with heavy elements (Z &gt; 26)</text>
-      `,
     },
   };
 
   const saved = getLessonState(lessonId).activities?.[activityId] || {};
-  const visited = new Set(Array.isArray(saved.visited) ? saved.visited : ['big-bang']);
-  let currentStage = saved.currentStage && STAGES[saved.currentStage] ? saved.currentStage : 'big-bang';
+  const stageIds = Object.keys(stages);
+  const steps = Object.fromEntries(stageIds.map((id) => {
+    const savedStep = saved.steps?.[id];
+    return [id, Number.isInteger(savedStep) && savedStep >= 0 && savedStep < stages[id].steps.length ? savedStep : 0];
+  }));
+  const completedStages = new Set(Array.isArray(saved.completedStages)
+    ? saved.completedStages.filter((id) => stageIds.includes(id))
+    : saved.completed ? stageIds : []);
+  let currentStage = stageIds.includes(saved.currentStage) ? saved.currentStage : 'big-bang';
 
-  function render(save = false) {
-    const data = STAGES[currentStage];
+  function render() {
+    const stage = stages[currentStage];
+    const step = stage.steps[steps[currentStage]];
     tabBtns.forEach((btn) => {
       const active = btn.dataset.cosmicStage === currentStage;
       btn.classList.toggle('is-active', active);
-      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      btn.setAttribute('aria-pressed', String(active));
     });
 
-    if (svgEl) svgEl.innerHTML = data.svg;
-    if (titleEl) titleEl.textContent = data.title;
-    if (badgeEl) badgeEl.textContent = data.badge;
-    if (listEl) {
-      listEl.innerHTML = data.bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join('');
-    }
-    if (outputsEl) {
-      outputsEl.innerHTML = data.outputs
-        .map((o) => `<span class="cosmic-element-tag">${escapeHtml(o)}</span>`)
-        .join('');
-    }
-    if (progressBadge) {
-      progressBadge.textContent = `Explored: ${visited.size} / 3 cosmic stages`;
-    }
+    badge.textContent = stage.badge;
+    title.textContent = stage.title;
+    svg.setAttribute('aria-label', step.imageLabel);
+    svg.innerHTML = step.graphic;
+    explanation.textContent = step.explanation || '';
+    explanation.hidden = !step.explanation;
+    question.textContent = step.question || '';
+    question.hidden = !step.question;
+    reveal.textContent = step.button || 'Replay this stage';
+    progressBadge.textContent = `Completed: ${completedStages.size} / ${stageIds.length} stages`;
+  }
 
-    if (save && lessonId && activityId) {
-      const done = visited.size >= 3;
-      setActivityResult(
-        lessonId,
-        activityId,
-        {
-          type: 'cosmic-timeline',
-          title: titleText,
-          currentStage,
-          visited: Array.from(visited),
-          answerSummary: `${visited.size}/3 cosmic stages explored`,
-          completed: done,
-        },
-        totalActivities
-      );
-    }
+  function persist() {
+    setActivityResult(lessonId, activityId, {
+      type: 'cosmic-timeline',
+      title: titleText,
+      currentStage,
+      steps,
+      completedStages: Array.from(completedStages),
+      answerSummary: `${completedStages.size}/${stageIds.length} stages completed`,
+      completed: completedStages.size === stageIds.length,
+    }, totalActivities);
   }
 
   tabBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      const stageId = btn.dataset.cosmicStage;
-      if (!STAGES[stageId]) return;
-      currentStage = stageId;
-      visited.add(stageId);
-      render(true);
+      currentStage = btn.dataset.cosmicStage;
+      render();
+      persist();
     });
   });
 
-  render(false);
+  reveal.addEventListener('click', () => {
+    const lastStep = stages[currentStage].steps.length - 1;
+    steps[currentStage] = steps[currentStage] === lastStep ? 0 : steps[currentStage] + 1;
+    if (steps[currentStage] === lastStep) completedStages.add(currentStage);
+    render();
+    persist();
+  });
+
+  render();
 }
 
 export function initAbundanceChart(container, lessonId, totalActivities) {
   const activityId = container.dataset.activityId;
   const svgEl = container.querySelector('#abundance-svg');
+  const reveal = container.querySelector('[data-abundance-reveal]');
+  const prompt = container.querySelector('[data-abundance-prompt]');
+  const frame = container.querySelector('.abundance-chart-frame');
+  const inspectorRow = container.querySelector('.abundance-inspector-row');
+  const check = container.querySelector('.abundance-check-box');
   const oddoToggle = container.querySelector('[data-abundance-oddo]');
   const inspectorEl = container.querySelector('[data-abundance-inspector]');
   const checkBtns = Array.from(container.querySelectorAll('[data-abundance-choice]'));
@@ -3921,18 +3961,48 @@ export function initAbundanceChart(container, lessonId, totalActivities) {
 
   const first30 = ELEMENTS.filter((e) => e.number >= 1 && e.number <= 30 && e.cosmicAbundance != null);
   const saved = getLessonState(lessonId).activities?.[activityId] || {};
+  const views = [
+    {
+      prompt: 'Predict which two elements will have the tallest bars.',
+      button: 'Reveal the two tallest bars',
+      elements: [],
+    },
+    {
+      prompt: 'Hydrogen and helium have the tallest bars. Now predict which is most abundant: nitrogen (7), oxygen (8) or fluorine (9).',
+      button: 'Compare nitrogen, oxygen and fluorine',
+      elements: [1, 2],
+    },
+    {
+      prompt: 'Oxygen (8) is higher than both neighbours. How does adding a helium nucleus to carbon help explain that peak?',
+      button: 'Show all 30 elements',
+      elements: [7, 8, 9],
+    },
+    {
+      prompt: 'Inspect more neighbours. Then highlight even and odd atomic numbers to see how often the pattern repeats.',
+      button: 'Replay predictions',
+      elements: first30.map((el) => el.number),
+    },
+  ];
+  const fullView = views.length - 1;
+  let view = Number.isInteger(saved.view) && views[saved.view] ? saved.view : saved.completed ? fullView : 0;
   let highlightOddo = Boolean(saved.highlightOddo);
-  let selectedZ = Number.isInteger(saved.selectedZ) ? saved.selectedZ : 6;
+  let selectedZ = Number.isInteger(saved.selectedZ) ? saved.selectedZ : null;
   let answerChoice = saved.answerChoice || '';
 
-  function getOriginNote(z) {
-    if (z <= 3) return 'Big Bang Nucleosynthesis';
-    if (z <= 26) return 'Stellar Fusion inside Stars';
-    return 'Supernovae & Neutron Star Mergers';
-  }
+  const originNotes = {
+    1: 'Most hydrogen dates to the early universe.',
+    2: 'Most helium dates to the early universe. Stars also make helium.',
+    3: 'Some lithium dates to the early universe. Later processes also produce it.',
+    6: 'Helium fusion inside stars makes carbon-12.',
+    8: 'Stars can make oxygen-16 by fusing carbon-12 with helium-4.',
+  };
 
   function renderChart() {
-    if (!svgEl) return;
+    const elements = first30.filter((el) => views[view].elements.includes(el.number));
+    if (elements.length === 0) {
+      svgEl.replaceChildren();
+      return;
+    }
     const width = 760;
     const height = 225;
     const padL = 48;
@@ -3943,8 +4013,8 @@ export function initAbundanceChart(container, lessonId, totalActivities) {
     const plotH = height - padT - padB;
     const minLog = -1; // Be = 0.60 -> log10 = -0.22
     const maxLog = 11; // H = 2.43e10 -> log10 = 10.39
-    const barStep = plotW / first30.length;
-    const barW = Math.max(12, barStep - 4);
+    const barStep = plotW / elements.length;
+    const barW = Math.min(96, barStep - 4);
 
     const gridLines = [0, 3, 6, 9].map((exp) => {
       const y = padT + plotH - ((exp - minLog) / (maxLog - minLog)) * plotH;
@@ -3955,7 +4025,7 @@ export function initAbundanceChart(container, lessonId, totalActivities) {
       `;
     });
 
-    const bars = first30.map((el, idx) => {
+    const bars = elements.map((el, idx) => {
       const logVal = Math.log10(el.cosmicAbundance);
       const frac = Math.max(0.03, (logVal - minLog) / (maxLog - minLog));
       const barH = frac * plotH;
@@ -3964,21 +4034,17 @@ export function initAbundanceChart(container, lessonId, totalActivities) {
       const isEven = el.number % 2 === 0;
 
       let fill = '#64748B';
-      if (highlightOddo) {
+      if (view === fullView && highlightOddo) {
         fill = isEven ? '#0284C7' : '#F25C5E';
       } else if (el.number <= 2) {
         fill = '#D97706';
-      } else if (el.number <= 26) {
-        fill = '#0284C7';
-      } else {
-        fill = '#047857';
       }
 
       const isSel = el.number === selectedZ;
       return `
-        <g class="abundance-bar-group ${isSel ? 'is-selected' : ''}" data-ab-z="${el.number}" tabindex="0" role="button" aria-label="${escapeHtml(el.name)} Z=${el.number}">
+        <g class="abundance-bar-group ${isSel ? 'is-selected' : ''}" data-ab-z="${el.number}" tabindex="0" role="button" aria-pressed="${isSel}" aria-label="${escapeHtml(el.name)} Z=${el.number}">
           <rect class="abundance-bar-rect" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barW.toFixed(1)}" height="${barH.toFixed(1)}" rx="2.5" fill="${fill}" />
-          <text x="${(x + barW / 2).toFixed(1)}" y="${height - 16}" text-anchor="middle" fill="#0F172A" font-size="9" font-weight="${isSel ? '800' : '600'}">${el.symbol}</text>
+          <text x="${(x + barW / 2).toFixed(1)}" y="${height - 16}" text-anchor="middle" fill="#0F172A" font-size="${view === fullView ? 9 : 13}" font-weight="${isSel ? '800' : '600'}">${view === fullView ? el.symbol : el.name}</text>
           <text x="${(x + barW / 2).toFixed(1)}" y="${height - 5}" text-anchor="middle" fill="#64748B" font-size="8" font-family="IBM Plex Mono, monospace">${el.number}</text>
         </g>
       `;
@@ -3992,15 +4058,20 @@ export function initAbundanceChart(container, lessonId, totalActivities) {
 
     svgEl.querySelectorAll('[data-ab-z]').forEach((group) => {
       const choose = () => {
-        selectedZ = Number.parseInt(group.dataset.abZ || '6', 10);
-        renderChart();
+        selectedZ = Number(group.dataset.abZ);
+        svgEl.querySelectorAll('[data-ab-z]').forEach((bar) => {
+          const selected = bar === group;
+          bar.classList.toggle('is-selected', selected);
+          bar.setAttribute('aria-pressed', String(selected));
+        });
         renderInspector();
-        persist(false);
+        persist();
       };
       group.addEventListener('click', choose);
       group.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
+          e.stopPropagation();
           choose();
         }
       });
@@ -4009,8 +4080,12 @@ export function initAbundanceChart(container, lessonId, totalActivities) {
 
   function renderInspector() {
     if (!inspectorEl) return;
-    const el = first30.find((item) => item.number === selectedZ) || first30[5];
-    const parity = el.number % 2 === 0 ? 'Even atomic number (paired stability)' : 'Odd atomic number (lower neighbor)';
+    const el = first30.find((item) => item.number === selectedZ && views[view].elements.includes(item.number));
+    if (!el) {
+      inspectorEl.textContent = 'Select a bar to inspect its abundance.';
+      return;
+    }
+    const parity = el.number % 2 === 0 ? 'Even atomic number' : 'Odd atomic number';
     const formatted =
       el.cosmicAbundance >= 1e6
         ? `${(el.cosmicAbundance / 1e6).toFixed(2)} million`
@@ -4024,9 +4099,7 @@ export function initAbundanceChart(container, lessonId, totalActivities) {
       <div style="font-size:0.875rem; color:var(--text-body);">
         Relative abundance: <strong class="tabular-nums">${formatted}</strong> (per 1,000,000 Si atoms)
       </div>
-      <div style="font-size:0.85rem; color:var(--text-muted);">
-        Primary Cosmic Origin: <strong>${getOriginNote(el.number)}</strong>
-      </div>
+      ${originNotes[el.number] ? `<p class="abundance-origin-note">${escapeHtml(originNotes[el.number])}</p>` : ''}
     `;
   }
 
@@ -4044,12 +4117,12 @@ export function initAbundanceChart(container, lessonId, totalActivities) {
       checkFeedback.classList.toggle('is-success', isCorrect);
       checkFeedback.classList.toggle('is-error', !isCorrect);
       checkFeedback.textContent = isCorrect
-        ? '✓ Correct! Even-Z elements (C, O, Ne, Mg, Si, Fe) spike higher because fusion frequently adds Helium-4 (2p + 2n) blocks and paired nucleons are extra stable.'
-        : '✕ Look at the blue vs. coral bars in Oddo–Harkins mode: Carbon (6), Oxygen (8), and Iron (26) spike higher than their odd neighbors.';
+        ? 'Correct. Even atomic numbers often form peaks. Adding helium-4 in some fusion reactions increases the proton count by two and helps explain the pattern.'
+        : 'Compare carbon (6), oxygen (8) and iron (26) with the bars on either side.';
     }
   }
 
-  function persist(showSaved) {
+  function persist() {
     if (!lessonId || !activityId) return;
     const completed = answerChoice === 'even' && highlightOddo;
     setActivityResult(
@@ -4058,51 +4131,57 @@ export function initAbundanceChart(container, lessonId, totalActivities) {
       {
         type: 'abundance-chart',
         title: titleText,
+        view,
         highlightOddo,
         selectedZ,
         answerChoice,
-        answerSummary: completed ? 'Oddo–Harkins pattern verified' : `Inspecting Z=${selectedZ}`,
+        answerSummary: completed ? 'Oddo–Harkins pattern verified' : views[view].button,
         completed,
       },
       totalActivities
     );
-    if (showSaved) applyCheckUI();
   }
 
-  oddoToggle?.addEventListener('click', () => {
-    highlightOddo = !highlightOddo;
-    oddoToggle.setAttribute('aria-pressed', highlightOddo ? 'true' : 'false');
+  function renderView() {
+    const showFull = view === fullView;
+    reveal.textContent = views[view].button;
+    prompt.textContent = views[view].prompt;
+    frame.hidden = view === 0;
+    inspectorRow.hidden = view === 0;
+    check.hidden = !showFull;
+    oddoToggle.hidden = !showFull;
+    oddoToggle.setAttribute('aria-pressed', String(highlightOddo));
     oddoToggle.textContent = highlightOddo
       ? 'Showing Even (Blue) vs Odd (Coral)'
       : 'Highlight Even vs. Odd Z (Oddo–Harkins)';
     renderChart();
-    persist(false);
+    renderInspector();
+    applyCheckUI();
+  }
+
+  reveal.addEventListener('click', () => {
+    view = (view + 1) % views.length;
+    selectedZ = null;
+    renderView();
+    persist();
+  });
+
+  oddoToggle.addEventListener('click', () => {
+    highlightOddo = !highlightOddo;
+    renderView();
+    persist();
   });
 
   checkBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      answerChoice = btn.dataset.abundanceChoice || '';
-      if (!highlightOddo) {
-        highlightOddo = true;
-        if (oddoToggle) {
-          oddoToggle.setAttribute('aria-pressed', 'true');
-          oddoToggle.textContent = 'Showing Even (Blue) vs Odd (Coral)';
-        }
-        renderChart();
-      }
-      applyCheckUI();
-      persist(true);
+      answerChoice = btn.dataset.abundanceChoice;
+      highlightOddo = true;
+      renderView();
+      persist();
     });
   });
 
-  if (oddoToggle) {
-    oddoToggle.setAttribute('aria-pressed', highlightOddo ? 'true' : 'false');
-    if (highlightOddo) oddoToggle.textContent = 'Showing Even (Blue) vs Odd (Coral)';
-  }
-
-  renderChart();
-  renderInspector();
-  applyCheckUI();
+  renderView();
 }
 
 export function initBindingEnergyCurve(container, lessonId, totalActivities) {

@@ -3996,42 +3996,108 @@ body.is-slideshow-mode .projector-bottombar {
   color: var(--text-heading);
 }
 
+.cosmic-stage-panel {
+  min-height: 0;
+}
+
 .cosmic-svg {
-  width: 100%;
-  max-width: 420px;
-  height: auto;
   display: block;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border-radius: var(--radius-sm);
+  background: #0f172a;
 }
 
-.cosmic-bullet-list {
-  margin: 0;
-  padding-left: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 0.96rem;
-  line-height: 1.5;
-  color: var(--text-body);
+.cosmic-svg-label {
+  fill: #f8fafc;
+  text-anchor: middle;
+  font-size: 16px;
+  font-weight: 700;
 }
 
-.cosmic-output-strip {
+.cosmic-svg-detail {
+  fill: #cbd5e1;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cosmic-proton-mark {
+  fill: white;
+  font-size: 12px;
+}
+
+.cosmic-particle-key,
+.cosmic-controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  align-items: center;
+  gap: 8px 12px;
 }
 
-.cosmic-element-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 10px;
+.cosmic-particle-key {
+  margin: 0;
+  color: var(--text-body);
+  font-size: 0.85rem;
+}
+
+.cosmic-key-dot {
+  display: inline-grid;
+  width: 1.05em;
+  height: 1.05em;
+  place-items: center;
+  border-radius: 50%;
+  background: #64748b;
+  color: white;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.cosmic-key-proton {
+  background: #dc2626;
+}
+
+.cosmic-prediction h3,
+.cosmic-handoff p,
+.cosmic-step-copy p,
+.abundance-origin-note {
+  margin: 0;
+}
+
+.cosmic-step-copy p {
+  line-height: 1.45;
+}
+
+.cosmic-prediction .cosmic-controls {
+  margin-top: auto;
+}
+
+.cosmic-handoff {
+  margin: 0;
+  padding: 9px 12px;
+  border-left: 3px solid var(--accent-accessible);
   border-radius: var(--radius-sm);
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-hairline);
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--text-heading);
+  background: var(--accent-soft);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cosmic-fusion-input {
+    animation: cosmic-fusion-input 420ms ease-out;
+  }
+
+  .cosmic-fusion-product {
+    animation: cosmic-fusion-product 480ms ease-out;
+  }
+}
+
+@keyframes cosmic-fusion-input {
+  40% { transform: translateX(16px); }
+  65% { opacity: 0.25; }
+}
+
+@keyframes cosmic-fusion-product {
+  0%, 30% { opacity: 0; transform: translateX(-38px) scale(0.7); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
 }
 
 /* Cosmic Abundance SVG Chart (Lesson 3 Slide 3) */
@@ -4069,6 +4135,7 @@ body.is-slideshow-mode .projector-bottombar {
   opacity: 0.85;
 }
 
+.abundance-bar-group:focus-visible .abundance-bar-rect,
 .abundance-bar-group.is-selected .abundance-bar-rect {
   stroke: var(--text-heading);
   stroke-width: 2;
@@ -4090,6 +4157,18 @@ body.is-slideshow-mode .projector-bottombar {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.abundance-toolbar [hidden],
+.abundance-chart-frame[hidden],
+.abundance-inspector-row[hidden],
+.abundance-check-box[hidden] {
+  display: none;
+}
+
+.abundance-origin-note {
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
 
 /* Binding Energy Curve (Lesson 3 Slide 5) */
